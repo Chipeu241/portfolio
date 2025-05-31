@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Giới thiệu chung</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'fintech/assets//img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/favicon.ico' %}">
+    <!-- Load Require CSS -->
+    <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="{% static 'fintech/assets/css/boxicon.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/templatemo.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/custom.css' %}">
+<!--
+    
+TemplateMo 561 Purple Buzz
+
+https://templatemo.com/tm-561-purple-buzz
+
+-->
+</head>
+
+<body>
+    <!-- Header -->
+    <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand h1" href="index.html">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+                <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
+                <div class="flex-fill mx-xl-5 mb-2">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 " href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                            <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
+                                <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
+                                <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
+                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                            <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
+                                <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
+                                <li><a class="dropdown-item" href="dangky.html">Đăng ký tuyển sinh</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                            <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
+                                <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex position-relative">
+                    <a class="nav-link search-toggle" href="javascript:void(0);">
+                      <i class="bx bx-search-alt-2 bx-sm text-primary"></i>
+                    </a>
+                  
+                    <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
+                      <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                      <button class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                  
+                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                  </div>                  
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const searchIcon = document.querySelector('.search-toggle');
+          const searchBox = document.querySelector('.search-box');
+      
+          searchIcon.addEventListener('click', () => {
+            searchBox.classList.toggle('show');
+          });
+      
+          // Click ra ngoài thì ẩn
+          document.addEventListener('click', function (event) {
+            const isClickInside = searchBox.contains(event.target) || searchIcon.contains(event.target);
+            if (!isClickInside) {
+              searchBox.classList.remove('show');
+            }
+          });
+        });
+      </script>      
+    <!-- Close Header -->
+
+
+    <!-- Start Banner Hero -->
+    <section class="bg-light w-100">
+        <div class="container">
+            <div class="row d-flex align-items-center py-5">
+                <div class="col-lg-6 text-start">
+                    <h1 class="h2 py-5 text-primary typo-space-line">Giới thiệu</h1>
+                    <p class="light-300" style="font-size: larger; text-align: justify;font-weight: bold;">
+                        Sự bùng nổ của công nghệ trong tài chính đòi hỏi nguồn nhân lực vừa giỏi chuyên môn, vừa thành thạo công nghệ. Nắm bắt xu thế này, từ năm 2023, Khoa Tài chính - Học viện Ngân hàng chính thức tuyển sinh ngành Công nghệ Tài chính (FinTech), trở thành một trong những đơn vị tiên phong đào tạo lĩnh vực này tại Việt Nam. Chương trình đào tạo trang bị kiến thức tài chính kết hợp công nghệ hiện đại, đáp ứng nhu cầu thị trường lao động trong kỷ nguyên số.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static 'fintech/assets/img/Anh gthieu.jpg' %}" style="height: 350px; width: 600px; padding-left: 40px;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Hero -->
+
+<section class="container py-5">
+    <div class="row">
+        <div class="col-lg-12 mb-5 text-center">
+            <h2 class="display-5 text-primary fw-bold">Công nghệ Tài chính (FinTech)</h2>
+            <p class="lead text-muted mt-3" style="font-size: 30px; font-style: italic; font-weight: bolder;">Kết nối sức mạnh, vươn tới thành công!</p>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <img src="{% static 'fintech/assets/img/ẢNH TRƯƠNGF.jpg' %}" class="img-fluid rounded shadow" alt="FinTech">
+        </div>
+        <div class="col-lg-6 mb-4 align-self-center"> 
+            <h4 class="fw-bold mb-3" style="color:#1318be;">Giới thiệu chương trình FinTech</h4>
+            <p class="light-300 fs-5" style="text-align: justify;">
+                Công nghệ tài chính (Financial Technology - FinTech) là một ngành kết hợp giữa Công nghệ và Tài chính, đặc biệt ưu tiên sử dụng các công nghệ hiện đại như Blockchain, IoT, AI và Machine Learning, Cloud, API, Big Data, v.v. để thay đổi cách thức cung cấp sản phẩm dịch vụ tài chính, tạo ra những sản phẩm dịch vụ tài chính có tính năng đột phá, thay đổi các mô hình kinh doanh truyền thống, nâng cao trải nghiệm khách hàng cũng như tính hiệu quả, minh bạch, ổn định cho thị trường tài chính.
+        </p>
+    </div>
+
+
+        <div class="col-lg-12 mt-5">
+            <h4 class="text-primary fw-bold mb-3"><i class="bx bxs-star text-warning"></i> Tố chất cần thiết của sinh viên Công nghệ Tài chính</h4>
+            <ul class="fs-5 light-300" style="list-style: none; padding-left: 0;">
+                <li><i class="bx bx-check-circle text-success me-2"></i> Hiểu biết sâu sắc về kinh tế - tài chính</li>
+                <li><i class="bx bx-check-circle text-success me-2"></i> Kỹ năng sử dụng phần mềm công nghệ tài chính</li>
+                <li><i class="bx bx-check-circle text-success me-2"></i> Phân tích và quản lý dữ liệu</li>
+                <li><i class="bx bx-check-circle text-success me-2"></i> Ham học hỏi, kiên trì và yêu thích khám phá</li>
+            </ul>
+        </div>
+
+        <div class="col-lg-12 mt-5">
+            <h4 class="text-primary fw-bold mb-3"><i class="bx bxs-briefcase-alt-2 text-warning"></i> Cơ hội nghề nghiệp</h4>
+            <p class="fs-5 light-300 text-justify" style="text-align: justify;">
+                Sinh viên theo học <strong>CTĐT CÔNG NGHỆ TÀI CHÍNH</strong> tại Khoa Tài chính - HVNH được trang bị kiến thức và kỹ năng thực hành nghề nghiệp; nhanh chóng thích ứng với các xu hướng công nghệ trong lĩnh vực tài chính; chủ động xây dựng các giải pháp ứng dụng công nghệ tài chính vào tổ chức quản lý chuyên môn độc lập, sáng tạo; có khả năng học tập suốt đời, có tinh thần khởi nghiệp, đáp ứng yêu cầu phát triển kinh tế - xã hội và hội nhập quốc tế.<br>
+                Sinh viên tốt nghiệp Chương trình Cử nhân Tài chính – Ngân hàng chuyên ngành Công nghệ Tài chính tại HVNH có cơ hội nghề nghiệp vô cùng rộng mở tại các doanh nghiệp, tập đoàn; Ngân hàng thương mại và các tổ chức tín dụng khác; Công ty tư vấn tài chính, chứng khoán, kiểm toán, thẩm định giá, bảo hiểm; Đại lý thuế, hải quan; Các cơ quan nhà nước; Viện nghiên cứu, trường đại học, v.v. với các vị trí có thể đảm nhiệm gồm:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="light-300 fs-5" style="list-style: none;">
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên kinh doanh</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên kinh doanh dịch vụ tài chính số</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên phân tích kinh doanh</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên phân tích dữ liệu</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="light-300 fs-5" style="list-style: none;">
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên phân tích nghiệp vụ</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên phát triển hệ thống</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên quản trị dữ liệu, cơ sở dữ liệu tài chính</li>
+                        <li><i class="bx bx-chevron-right text-primary"></i> Chuyên viên hỗ trợ bộ phận chiến lược</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Start Footer -->
+<footer class="bg-secondary pt-4">
+    <div class="container">
+        <div class="row py-4">
+
+            <div class="col-lg-3 col-12 align-left">
+                <a class="navbar-brand" href="index.html">
+                    <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                    <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                </a>
+                <p class="text-light my-lg-4 my-2">
+                    Khoa Tài chính - Học viện Ngân hàng
+                </p>
+                <ul class="list-inline footer-icons light-300">
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="http://facebook.com/">
+                            <i class='bx bxl-facebook-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                            <i class='bx bxl-linkedin-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                            <i class='bx bxl-whatsapp-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                            <i class='bx bxl-flickr-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.medium.com/">
+                            <i class='bx bxl-medium-square bx-md' ></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                        </li>
+                    </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                <ul class="list-unstyled text-light light-300">
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                <ul class="list-unstyled text-light light-300">
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 bg-primary py-3">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-lg-6 col-sm-12">
+                    <p class="text-lg-start text-center text-light light-300">
+                        © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                        <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <p class="text-lg-end text-center text-light light-300">
+                        Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- End Footer -->
+ <!-- Bootstrap -->
+ <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+ <!-- Load jQuery require for isotope -->
+ <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+ <!-- Isotope -->
+ <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+ <!-- Page Script -->
+ <script>
+     $(window).load(function() {
+         // init Isotope
+         var $projects = $('.projects').isotope({
+             itemSelector: '.project',
+             layoutMode: 'fitRows'
+         });
+         $(".filter-btn").click(function() {
+             var data_filter = $(this).attr("data-filter");
+             $projects.isotope({
+                 filter: data_filter
+             });
+             $(".filter-btn").removeClass("active");
+             $(".filter-btn").removeClass("shadow");
+             $(this).addClass("active");
+             $(this).addClass("shadow");
+             return false;
+         });
+     });
+ </script>
+ <!-- Templatemo -->
+ <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+ <!-- Custom -->
+ <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+</body>
+</html>

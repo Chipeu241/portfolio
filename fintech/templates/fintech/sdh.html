@@ -1,0 +1,649 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ngành Công nghệ tài chính - Học viện Ngân hàng</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}">
+    <!-- Load Require CSS -->
+    <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="{% static 'fintech/assets/css/boxicon.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/templatemo.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/custom.css' %}">
+    <style>
+        /* Container */
+        .page-content.container {
+            max-width: 1200px;
+        }
+        
+        /* --- Main Content and Sidebar Section Styles --- */
+        .page-content {
+            display: flex;
+            gap: 30px;
+            padding: 30px 0;
+            align-items: flex-start;
+        }
+        
+        .main-content {
+            flex: 3;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .main-content h1 {
+            font-size: 2rem;
+            color: rgba(97,84,199,1);
+            margin-bottom: 10px;
+        }
+        
+        .main-content .meta-info {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 10px;
+        }
+        
+        .main-content .meta-info i {
+            margin-right: 5px;
+            color: #666;
+        }
+        
+        .main-content .note {
+            font-style: italic;
+            color: #6218d0;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        /* Section Item Styles */
+        .section-item {
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-item .section-title {
+            background-color: #e9f5ff;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            color: #6266ea;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .section-item .section-title:hover {
+            background-color: #d0e8ff;
+        }
+        
+        .section-item .section-title i {
+            transition: transform 0.3s ease;
+        }
+        
+        .section-item .section-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            background-color: #fff;
+        }
+        
+        .section-item .section-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .section-item .section-content h4 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        /* Method List Styles */
+        .method-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        .method-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .method-list .method-number {
+            font-weight: bold;
+            color: #cc0000;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        
+        .method-list .method-text {
+            color: #555;
+        }
+        
+        /* Table Styles */
+        .table-note {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+        }
+        
+        table thead tr:first-child th {
+            background-color: rgba(97,84,199,1);
+            color: #fff;
+            text-align: center;
+        }
+        
+        table thead tr:last-child th {
+            background-color: #e9f5ff;
+            color: #333;
+            font-weight: normal;
+        }
+        
+        .program-category {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            color: rgba(97,84,199,1);
+            text-align: center;
+        }
+        
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        table tbody tr:hover {
+            background-color: #eef;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            flex: 1;
+        }
+        
+        .sidebar-block {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-block h3 {
+            font-size: 1.1rem;
+            color: rgba(97,84,199,1);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6266ea;
+        }
+        
+        .sidebar-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-block ul li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-block ul li a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            transition: color 0.2s ease;
+        }
+        
+        .sidebar-block ul li a:hover {
+            color: rgba(97,84,199,1);
+        }
+        
+        .sidebar-block ul li:last-child {
+            text-align: right;
+            margin-top: 15px;
+        }
+        
+        .sidebar-block ul li:last-child a {
+            color: rgba(97,84,199,1);
+            font-weight: bold;
+        }
+        
+        .sidebar-block ul li:last-child a i {
+            margin-left: 5px;
+        }
+        
+        .sidebar-button button {
+            width: 100%;
+            background-color: rgba(97,84,199,1);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar-button button:hover {
+            background-color: rgba(97,84,199,1);
+        }
+        
+        .sidebar-button button i {
+            margin-right: 10px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .page-content {
+                flex-direction: column;
+            }
+        
+            .main-content, .sidebar {
+                flex: none;
+                width: 100%;
+            }
+        
+            table, .table-responsive {
+                font-size: 0.8rem;
+            }
+        }
+        </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand h1" href="index.html">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+                <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
+                <div class="flex-fill mx-xl-5 mb-2">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 " href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                            <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
+                                <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
+                                <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
+                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                            <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
+                                <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
+                                <li><a class="dropdown-item" href="dangky.html">Đăng ký tuyển sinh</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                            <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
+                                <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex position-relative">
+                    <a class="nav-link search-toggle" href="javascript:void(0);">
+                      <i class="bx bx-search-alt-2 bx-sm text-primary"></i>
+                    </a>
+                  
+                    <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
+                      <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                      <button class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                  
+                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                  </div>                  
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const searchIcon = document.querySelector('.search-toggle');
+          const searchBox = document.querySelector('.search-box');
+      
+          searchIcon.addEventListener('click', () => {
+            searchBox.classList.toggle('show');
+          });
+      
+          // Click ra ngoài thì ẩn
+          document.addEventListener('click', function (event) {
+            const isClickInside = searchBox.contains(event.target) || searchIcon.contains(event.target);
+            if (!isClickInside) {
+              searchBox.classList.remove('show');
+            }
+          });
+        });
+      </script>      
+    <!-- Close Header -->
+
+    <section class="page-content container">
+        <div class="main-content">
+            <h1>Thông tin tuyển sinh sau Đại học chuyên ngành Fintech năm 2025(Đợt 1)</h1>
+            <p class="meta-info">
+                <i class="fas fa-calendar-alt"></i> Ngày: 18/04/2025
+                <i class="fas fa-eye"></i> Lượt xem: 7.125 lượt
+            </p>
+
+            <div class="section-item">
+                <h3 class="section-title">I. Tuyển sinh đào tạo trình độ Thạc sĩ<i class="fas fa-chevron-down"></i></h3>
+                <div class="section-content">
+                    <ol class="method-list">
+                        <li><span class="method-number">A.</span> <span class="method-text">Chỉ tiêu tuyển sinh</span></li>
+                        <p> Ngành Công nghệ Tài chính (Mã ngành: 7012005): Chỉ tiêu 15</p>
+                        <li><span class="method-number">B.</span> <span class="method-text">Hình thức và thời gian đào tạo</span></li>
+                        <P>1. Hình thức đào tạo chính quy áp dụng cho chương trình định hướng nghiên cứu và chương trình định hướng ứng dụng. Hình thức đào tạo vừa làm vừa học áp dụng cho chương trình định hướng ứng dụng.</p>
+
+<P>2. Thời gian đào tạo trình độ thạc sĩ theo hình thức đào tạo chính quy từ 12 tháng - 18 tháng; theo hình thức đào tạo vừa làm vừa học từ 18 tháng - 24 tháng.</P></p>
+                        <li><span class="method-number">C.</span> <span class="method-text">Phương thức và thời gian tuyển sinh</span></li>
+                        <p>1. Phương thức tuyển sinh: Xét tuyển thẳng và xét tuyển theo hồ sơ.</p>
+                    <p>2. Thời gian tuyển sinh:</p>
+                    <p>-Thời gian nộp hồ sơ: Từ 17/02/2025 đến hết ngày 20/04/2025;</p>
+                    <p>-Dự kiến tổ chức thi đánh giá năng lực ngoại ngữ đầu vào ngày 26/04/2025;</p>
+                    <p>-Dự kiến công bố kết quả xét tuyển vào ngày 09/05/2025, nhập học ngày 23/05/2025.</p>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="section-item">
+                <h3 class="section-title">II. Danh mục hồ sơ phải nộp <i class="fas fa-chevron-down"></i></h3>
+                <div class="section-content">
+                    <p>1.Bằng Đại học.</p>
+                    <p>2.Bảng điểm Đại học.</p>
+                    <p>3.Chứng chỉ ngoại ngữ(nếu có).</p>
+                    <p>4.Căn cước công dân/ Hộ chiếu.</p>
+                    <p>5.Ảnh chân dung của thí sinh.</p>
+                    <p>6.Bài luận (Đối với thí sinh dự tuyển theo hình thức Xét tuyển theo hồ sơ).</p>
+                    <p>7.Minh chứng giao dịch nộp lệ phí đăng ký dự tuyển (Ví dụ: Ảnh chụp Màn hình chuyển tiền, Giấy nộp tiền, ...).</p>
+                </div>
+            </div>
+
+            <div class="section-item">
+                <h3 class="section-title">III. Hướng dẫn nộp hồ sơ trực tuyến<i class="fas fa-chevron-down"></i></h3>
+                <div class="section-content">
+                    <p>1.Thí sinh nộp hồ sơ đăng ký dự tuyển tại đường link: https://forms.gle/kcgcQaTbTcpwq1p99</p>
+                    <p>Lưu ý:Thí sinh có thể nộp hồ sơ nhiều lần, tuy nhiên nhà trường sẽ chỉ ghi nhận hồ sơ ở lần nộp cuối cùng.</p>
+                    <p>2.Đối với bài luận: Thí sinh đánh máy và ký vào phần cuối bài luận theo mẫu, sau đó scan bài luận nộp cùng hồ sơ.</p>
+                    <p>3.Đối với các giấy tờ khác:</p>
+                    <p>Thí sinh scan Bằng, bảng điểm và chứng chỉ ngoại ngữ(nếu có), sau đó ghép các bản scan vào 01 file .pdf và đặt tên file theo cú pháp: CCCD_Bằng, bảng điểm và CCNN(Ví dụ: 001100001234_Bằng, bảng điểm và CCNN).</p>
+                    <p>Các loại giấy tờ còn lại thí sinh thực hiện tương tự, scan và ghép thành 01 file .pdf khác và đặt tên theo cú pháp: CCCD_Giấy tờ khác.</p>
+                    <p>4.Cách ghép file pdf:</p>
+                    <p>Thí sinh truy cập website https://smallpdf.com/vi/merge-pdf và làm theo hướng dẫn để ghép các file pdf thành 01 file duy nhất.</p>
+                    <p>5.Hướng dẫn nộp lệ phí đăng ký dự tuyển: Thí sinh chuyển khoản theo số tài khoản sau:</p>
+                    <p>-Tên người thụ hưởng: Học viện Ngân hàng</p>
+                    <p>-Số tài khoản:129 000 108 723</p>
+                    <p>-Tại ngân hàng: Vietinbank CN Hà Nội</p>
+                    <p>-Số tiền: 420.000đ</p>
+                    <p>-Nội  dung  nộp  tiền:  Họ  tên,  Ngày  sinh,  Số  điện  thoại,  LPSDH2025(Ví dụ: NGUYEN VAN A –10/10/1990 –0901000000 –LPSDH2025).</p>
+                    <p>6.Thông  tin  đăng  ký  học  bổ  sung  kiến  thức  thí  sinh  xem  tại  đường  link: https://hvnh.edu.vn/bavts/vi/thong-bao/thong-bao-mo-lop-bo-sung-kien-thuc-du-tuyen-sau-dai-hoc-dot-12025-249.html
+</p>
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-block">
+                <h3>THÔNG TIN TUYỂN SINH</h3>
+                <ul>
+                    <li><a href="#">Học Thạc sĩ trái ngành có khả thi?</a></li>
+                    <li><a href="#">Học đại học online: Bước đi linh hoạt, vững vàng cho tương lai nghề nghiệp</a></li>
+                    <li><a href="#">Nhu cầu nguồn nhân lực chất lượng cao trong khối ngành Hệ thống thông tin quản lý</a></li>
+                    <li><a href="#">Thông tin tuyển sinh Đại học chính quy năm 2025</a></li>
+                    <li><a href="#">Xem tất cả <i class="fas fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+            <div class="sidebar-button">
+                <button><i class="fas fa-comments"></i> Tư vấn trực tuyến</button>
+            </div>
+        </aside>
+    </section>
+
+    <!-- Start Footer -->
+    <footer class="bg-secondary pt-4">
+        <div class="container">
+            <div class="row py-4">
+
+                <div class="col-lg-3 col-12 align-left">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                        <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                    </a>
+                    <p class="text-light my-lg-4 my-2">
+                        Khoa Tài chính - Học viện Ngân hàng
+                    </p>
+                    <ul class="list-inline footer-icons light-300">
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="http://facebook.com/">
+                                <i class='bx bxl-facebook-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                                <i class='bx bxl-linkedin-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                                <i class='bx bxl-whatsapp-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                                <i class='bx bxl-flickr-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.medium.com/">
+                                <i class='bx bxl-medium-square bx-md' ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                        <ul class="list-unstyled text-light light-300">
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                            </li>
+                        </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-primary py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-start text-center text-light light-300">
+                            © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                            <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-end text-center text-light light-300">
+                            Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <script>
+        // JavaScript for expandable sections
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionTitles = document.querySelectorAll('.section-title');
+
+            sectionTitles.forEach(title => {
+                title.addEventListener('click', () => {
+                    const sectionItem = title.closest('.section-item');
+                    const content = sectionItem.querySelector('.section-content');
+                    const icon = title.querySelector('i');
+
+                    // Close all other open sections
+                    document.querySelectorAll('.section-content').forEach(otherContent => {
+                        if (otherContent !== content && otherContent.style.maxHeight) {
+                            otherContent.style.maxHeight = null;
+                            otherContent.style.paddingBottom = '0'; // Reset padding
+                            const otherIcon = otherContent.previousElementSibling.querySelector('i');
+                            otherIcon.classList.remove('fa-chevron-up');
+                            otherIcon.classList.add('fa-chevron-down');
+                        }
+                    });
+
+                    // Toggle current section
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.paddingBottom = '0'; // Reset padding
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        // Add padding-bottom when expanded, adjust as needed
+                        content.style.paddingBottom = '20px'; // Example padding
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+        });
+    </script>
+<!-- Bootstrap -->
+<script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Load jQuery require for isotope -->
+<script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+<!-- Isotope -->
+<script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+<!-- Page Script -->
+<script>
+    $(window).load(function() {
+        // init Isotope
+        var $projects = $('.projects').isotope({
+            itemSelector: '.project',
+            layoutMode: 'fitRows'
+        });
+        $(".filter-btn").click(function() {
+            var data_filter = $(this).attr("data-filter");
+            $projects.isotope({
+                filter: data_filter
+            });
+            $(".filter-btn").removeClass("active");
+            $(".filter-btn").removeClass("shadow");
+            $(this).addClass("active");
+            $(this).addClass("shadow");
+            return false;
+        });
+    });
+</script>
+<!-- Templatemo -->
+<script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+<!-- Custom -->
+<script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+</body>
+</html>

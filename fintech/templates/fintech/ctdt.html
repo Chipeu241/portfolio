@@ -1,0 +1,783 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chương trình đào tạo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.png' %}">
+    <!-- Load Require CSS -->
+    <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="{% static 'fintech/assets/css/boxicon.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/templatemo.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/custom.css' %}">
+    <style>
+        .background-section {
+          background-image: url("{% static 'fintech/assets/img/FT.jpg' %}");
+          background-size: cover;
+          background-position: center;
+          color: white;
+          padding: 80px 0;
+          position: relative;
+          text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+        .background-section {
+            background-image: url("{% static 'fintech/assets/img/FT.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            position: relative; /* Thêm dòng này để ::before hoạt động đúng */
+            }
+
+        .background-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 1;
+        }
+
+            .background-section h1,
+            .background-section p {
+            position: relative;
+            z-index: 2;
+            color: white;
+            }
+
+            .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+            }
+
+
+            table.schedule {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            }
+
+
+            .schedule thead th {
+            background-color: #d195ef;
+            padding: 10px;
+            border: 1px solid #000;
+            text-align: left;
+            }
+
+
+            .schedule td {
+            padding: 10px;
+            border: 1px solid #000;
+            }
+
+            .schedule .semester-row td,
+            .schedule .section-row td {
+            background-color: #f9f9f9;
+            /* font-weight: bold; */
+            font-family: Arial, sans-serif;
+            border: 1px solid #000;
+            }
+            /* footer */
+            .footer-wrapper {
+            width: 100%;
+            overflow-x: hidden; /* Ngăn xuất hiện thanh cuộn ngang */
+            }
+
+            .footer-wrapper > .bg-secondary,
+            .footer-wrapper > .bg-primary {
+            width: 100%;
+            }
+
+            .content-outline {
+            padding: 15px 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            }
+            /* bố cục nội dung c3 ctdt */
+            .outline-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            }
+
+            .outline-header i {
+            margin-right: 8px;
+            }
+
+            .outline-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            }
+
+            .outline-list li {
+            margin-bottom: 8px;
+            }
+
+            .outline-list a {
+            text-decoration: none;
+            }
+
+            .outline-list a:hover {
+            text-decoration: underline;
+            }
+      </style>      
+</head>
+
+<body>
+    <!-- Header -->
+    <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand h1" href="{% url 'index' %}">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+                <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
+                <div class="flex-fill mx-xl-5 mb-2">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 " href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                            <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
+                                <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
+                                <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
+                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                            <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
+                                <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                            <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
+                                <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex position-relative">
+                    <a class="nav-link search-toggle" href="javascript:void(0);">
+                      <i class="bx bx-search-alt-2 bx-sm text-primary"></i>
+                    </a>
+                  
+                    <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
+                      <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                      <button class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                  
+                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                  </div>                  
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const searchIcon = document.querySelector('.search-toggle');
+          const searchBox = document.querySelector('.search-box');
+      
+          searchIcon.addEventListener('click', () => {
+            searchBox.classList.toggle('show');
+          });
+      
+          // Click ra ngoài thì ẩn
+          document.addEventListener('click', function (event) {
+            const isClickInside = searchBox.contains(event.target) || searchIcon.contains(event.target);
+            if (!isClickInside) {
+              searchBox.classList.remove('show');
+            }
+          });
+        });
+      </script>      
+    <!-- Close Header -->
+
+<div class="background-section text-center py-5">
+  <h1 class="pricing-header h2 semi-bold-600">Chương trình đào tạo</h1>
+  <p class="pricing-footer fs-2">ngành Công nghệ Tài chính</p>
+</div>
+
+<div class="container-lg py-3">
+  <section class="container py-3">
+    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">I. Giới thiệu chương trình</h1>
+    <p class="light-400">
+        <b>Công nghệ tài chính (Financial Technology - FinTech)</b> là một ngành kết 
+        hợp giữa <b>CÔNG NGHỆ VÀ TÀI CHÍNH</b>, đặc biệt ưu tiên sử dụng các công 
+        nghệ hiện đại như Blockchain, IoT, AI và Machine Learning, Clould, API, 
+        Big Data, v.v. để thay đổi cách thức cung cấp sản phẩm dịch vụ tài chính, 
+        tạo ra những sản phẩm dịch vụ tài chính có tính năng đột phá, thay đổi 
+        các mô hình kinh doanh truyền thống, nâng cao trải nghiệm khách hàng cũng 
+        như tính hiệu quả, minh bạch, ổn định cho thị trường tài chính.</br>
+
+        Sinh viên ngành <b>Công nghệ tài chính</b> sẽ được học về ngôn ngữ lập trình, các kỹ 
+        thuật và giải pháp công nghệ ứng dụng trong các lĩnh vực tài chính bảo mật thông 
+        tin và các kỹ thuật mã hóa. Cơ hội nghề nghiệp của sinh viên CTĐT FinTech là vô 
+        cùng rộng mở  khi hệ sinh thái FinTech ngày càng hoàn thiện và phát triển. Các công 
+        ty Fintech đang hoạt động trong hầu hết các lĩnh vực của ngành tài chính như thanh 
+        toán, đầu tư, bảo hiểm, chứng khoán, tín dụng và quản trị rủi ro, giám sát tuân thủ.
+    </p>
+
+
+  <section class="container py-3">
+    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">II. Tố chất sinh viên FinTech</h1>
+    <p class="light-400">   
+    Để tham gia vào chương trình đào tạo này, người học cần có niềm yêu thích với 
+    tài chính và công nghệ, mong muốn. Cụ thể, người học cần có các tố chất như:</br>
+    ☼ Sự hiểu biết sâu sắc về kinh tế và tài chính.</br>
+    ☼Khả năng làm việc với các phần mềm và công nghệ tài chính.</br>
+    ☼Kỹ năng phân tích và quản lý dữ liệu.</br>
+    ☼Kiên trì, cầu thị, ham mê học hỏi, khám phá.
+    </p>
+              
+                
+  <section class="container py-3">
+    <h1 class="col-12 col-xl-8 h2 text-left text-primary pt-3">III. Chương trình đào tạo</h1>
+    <div class="content-outline">
+  <div class="outline-header">
+    <i class="bx bx-list-ul"></i> <strong>NỘI DUNG CHÍNH</strong>
+  </div>
+  <ul class="outline-list">
+    <li><a href="#hoc-ky1">HỌC KỲ I: KIẾN THỨC ĐẠI CƯƠNG</a></li>
+    <li><a href="#hoc-ky2">HỌC KỲ II: KIẾN THỨC ĐẠI CƯƠNG</a></li>
+    <li><a href="#hoc-ky3">HỌC KỲ III: KIẾN THỨC ĐẠI CƯƠNG</a></li>
+    <li><a href="#hoc-ky4">HỌC KỲ IV: KIẾN THỨC ĐẠI CƯƠNG</a></li>
+    <li><a href="#hoc-ky5">HỌC KỲ V: KIẾN THỨC CƠ SỞ NGÀNH</a></li>
+    <li><a href="#hoc-ky6">HỌC KỲ VI: KIẾN THỨC CƠ SỞ NGÀNH</a></li>
+    <li><a href="#hoc-ky7">HỌC KỲ VII: KIẾN THỨC CHUYÊN NGÀNH</a></li>
+    <li><a href="#hoc-ky8">HỌC KỲ VIII: KIẾN THỨC CHUYÊN NGÀNH</a></li>
+  </ul>
+</div>
+
+  </section>
+
+
+
+    <table class="schedule">
+  <thead>
+    <tr>
+      <th>TT</th>
+      <th>MÃ HỌC PHẦN</th>
+      <th>TÊN HỌC PHẦN</th>
+      <th>SỐ TC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky1"><u>HỌC KỲ 1</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ECO02A</td>
+      <td>Kinh tế vĩ mô</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ENG01A</td>
+      <td>Tiếng Anh I</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>IS52A</td>
+      <td>Năng lực số ứng dụng</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>MAT13A</td>
+      <td>Giải tích</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>PLT07A</td>
+      <td>Triết học Mác - Lênin</td>
+      <td>3</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky2"><u>HỌC KỲ 2</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>ECO01A</td>
+        <td>Kinh tế vi mô</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>ENG02A</td>
+        <td>Tiếng Anh II</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>IS48A</td>
+        <td>Lập trình Python</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>MAT14A</td>
+        <td>Xác suất và thống kê</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>PLT08A</td>
+        <td>Kinh tế chính trị Mác - Lênin</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>PLT09A</td>
+        <td>Chủ nghĩa xã hội khoa học</td>
+        <td>2</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky3"><u>HỌC KỲ 3</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>ATC01A</td>
+        <td>Nguyên lý kế toán</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>IS63A</td>
+        <td>Quản lý và khai thác dữ liệu căn bản</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>LAW02A</td>
+        <td>Luật kinh tế</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>MAT12A</td>
+        <td>Đại số tuyến tính</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>MGT36A</td>
+        <td>Đổi mới sáng tạo và khởi nghiệp</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>PLT10A</td>
+        <td>Lịch sử Đảng cộng sản Việt Nam</td>
+        <td>2</td>
+    </tr>
+
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky4"><u>HỌC KỲ 4</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>18 </td>
+        <td>FIN02A</td>
+        <td>Tài chính doanh nghiệp I</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>ENG03A</td>
+        <td>Tiếng Anh III</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>FIN121A</td>
+        <td>Thị trường tài chính và các định chế tài chính trong môi trường số</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>FIN17A</td>
+        <td>Ngân hàng thương mại</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>IS62A</td>
+        <td>Lập trình ứng dụng</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>PLT06A</td>
+        <td>Tư tưởng Hồ Chí Minh</td>
+        <td>2</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky5"><u>HỌC KỲ 5</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>24 </td>
+        <td>ECO24A</td>
+        <td>Kinh tế lượng trong tài chính</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>ENG04A</td>
+        <td>Tiếng Anh IV</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td>IS61A</td>
+        <td>Phân tích dữ liệu kinh doanh</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>MGT01A</td>
+        <td>Quản trị học</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>MIS08A</td>
+        <td>Phân tích thiết kế hệ thống</td>
+        <td>3</td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Tự chọn 01 (STC=03)</strong></td>
+    <tr>
+        <td>29</td>
+        <td>FIN07A</td>
+        <td>Bảo hiểm</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>FIN102A</td>
+        <td>Ngân hàng trung ương và chính sách tiền tệ</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td>FIN30A</td>
+        <td>Tài chính công</td>
+        <td>3</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky6"><u>HỌC KỲ 6</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>32 </td>
+        <td>FIN117A</td>
+        <td>Phân tích dữ liệu trong tài chính - ngân hàng</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td>FIN118A</td>
+        <td>Thuế trong hoạt động kinh doanh</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td>FIN25A</td>
+        <td>Tài chính doanh nghiệp II</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>35</td>
+        <td>FIN84A</td>
+        <td>Đầu tư tài chính</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>IS49A</td>
+        <td>Phân tích nghiệp vụ (BA)</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>37</td>
+        <td>MIS02A</td>
+        <td>Hệ thống thông tin quản lý</td>
+        <td>3</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky7"><u>HỌC KỲ 7</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>38 </td>
+        <td>FIN122A</td>
+        <td>Công  nghệ  tài chính</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>39</td>
+        <td>FIN75A</td>
+        <td>Quản trị rủi ro tài chính</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>40</td>
+        <td>IS60A</td>
+        <td>Quản lý dự án công nghệ thông tin</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>41</td>
+        <td>IS68A</td>
+        <td>Quản trị an toàn thông tin trong lĩnh vực Fintech</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>42</td>
+        <td>MGT65A</td>
+        <td>Quản trị công ty và đạo đức</td>
+        <td>3</td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Tự chọn 01 (STC=03)</strong></td>
+    <tr>
+        <td>43</td>
+        <td>IS54A</td>
+        <td>Trí tuệ nhân tạo</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>44</td>
+        <td>IS66A</td>
+        <td>Lập trình tài chính</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>45</td>
+        <td>IS67A</td>
+        <td>Công nghệ Blockchain và ứng dụng</td>
+        <td>3</td>
+    </tr>
+
+    <tr class="semester-row">
+      <td colspan="4"><strong id ="hoc-ky8"><u>HỌC KỲ 8</u></strong></td>
+    </tr>
+    <tr class="section-row">
+      <td colspan="4"><strong>Bắt buộc</strong></td>
+    </tr>
+    <tr>
+        <td>46 </td>
+        <td>GRA85A</td>
+        <td>Đồ án tốt nghiệp</td>
+        <td>8</td>
+    </tr>
+  <tbody>
+</table>
+</div>
+
+
+<!-- Start Footer -->
+<footer class="bg-secondary pt-4">
+    <div class="container">
+        <div class="row py-4">
+
+            <div class="col-lg-3 col-12 align-left">
+                <a class="navbar-brand" href="index.html">
+                    <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                    <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                </a>
+                <p class="text-light my-lg-4 my-2">
+                    Khoa Tài chính - Học viện Ngân hàng
+                </p>
+                <ul class="list-inline footer-icons light-300">
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="http://facebook.com/">
+                            <i class='bx bxl-facebook-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                            <i class='bx bxl-linkedin-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                            <i class='bx bxl-whatsapp-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                            <i class='bx bxl-flickr-square bx-md'></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item m-0">
+                        <a class="text-light" target="_blank" href="https://www.medium.com/">
+                            <i class='bx bxl-medium-square bx-md' ></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                        </li>
+                    </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                <ul class="list-unstyled text-light light-300">
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                <ul class="list-unstyled text-light light-300">
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
+                    </li>
+                    <li class="pb-2">
+                        <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 bg-primary py-3">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-lg-6 col-sm-12">
+                    <p class="text-lg-start text-center text-light light-300">
+                        © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                        <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <p class="text-lg-end text-center text-light light-300">
+                        Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- End Footer -->
+ <!-- Bootstrap -->
+ <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+ <!-- Load jQuery require for isotope -->
+ <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+ <!-- Isotope -->
+ <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+ <!-- Page Script -->
+ <script>
+     $(window).load(function() {
+         // init Isotope
+         var $projects = $('.projects').isotope({
+             itemSelector: '.project',
+             layoutMode: 'fitRows'
+         });
+         $(".filter-btn").click(function() {
+             var data_filter = $(this).attr("data-filter");
+             $projects.isotope({
+                 filter: data_filter
+             });
+             $(".filter-btn").removeClass("active");
+             $(".filter-btn").removeClass("shadow");
+             $(this).addClass("active");
+             $(this).addClass("shadow");
+             return false;
+         });
+     });
+ </script>
+ <!-- Templatemo -->
+ <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+ <!-- Custom -->
+ <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+
+</body>
+</html>

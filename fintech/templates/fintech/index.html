@@ -1,0 +1,467 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ngành Công nghệ tài chính - Học viện Ngân hàng</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}">
+    <!-- Load Require CSS -->
+    <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="{% static 'fintech/assets/css/boxicon.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/templatemo.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/custom.css' %}">
+<!--
+    
+TemplateMo 561 Purple Buzz
+
+https://templatemo.com/tm-561-purple-buzz
+
+-->
+</head>
+
+<body>
+    <!-- Header -->
+    <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand h1" href="index.html">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+                <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
+                <div class="flex-fill mx-xl-5 mb-2">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 " href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                            <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
+                                <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
+                                <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
+                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
+                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                            <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
+                                <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
+                                <li><a class="dropdown-item" href="dangky.html">Đăng ký tuyển sinh</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                            <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
+                                <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex position-relative">
+                    <a class="nav-link search-toggle" href="javascript:void(0);">
+                      <i class="bx bx-search-alt-2 bx-sm text-primary"></i>
+                    </a>
+                  
+                    <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
+                      <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                      <button class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                  
+                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                  </div>                  
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const searchIcon = document.querySelector('.search-toggle');
+          const searchBox = document.querySelector('.search-box');
+      
+          searchIcon.addEventListener('click', () => {
+            searchBox.classList.toggle('show');
+          });
+      
+          // Click ra ngoài thì ẩn
+          document.addEventListener('click', function (event) {
+            const isClickInside = searchBox.contains(event.target) || searchIcon.contains(event.target);
+            if (!isClickInside) {
+              searchBox.classList.remove('show');
+            }
+          });
+        });
+      </script>      
+    <!-- Close Header -->
+
+
+    <!-- Start Banner Hero -->
+    <div class="banner-wrapper bg-light">
+        <div id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+
+            <!-- Start slider -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+
+                        <div class="py-5 row d-flex align-items-center">
+                            <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-5 pb-5">
+                                <h1 class="banner-heading h1 text-secondary display-3 mb-0 pb-5 mx-0 px-0 light-300 typo-space-line" style="font-size: 2.5rem; line-height: 1.3;">
+                                    <strong>Chương trình đào tạo</strong>
+                                    <br>Ngành Công nghệ tài chính - Học viện Ngân hàng                         
+                              </h1>
+                                <p class="banner-body text-muted py-3 mx-0 px-0">
+                                    Giới thiệu về chương trình đào tạo ngành Công nghệ Tài chính tại Học viện Ngân hàng, bao gồm các môn học chuyên ngành, kỹ năng thực hành, định hướng nghề nghiệp và các chứng chỉ hỗ trợ sinh viên phát triển toàn diện.
+                              </p>
+                                <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="CTDT.html" role="button">Xem bài</a> <!-- 'xem bài' dẫn đến trang ctrinh dtao, phải tạo post ctdt (tạo trang html) -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="py-5 row d-flex align-items-center">
+                            <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-5 pb-5">
+                                <h1 class="banner-heading h1 text-secondary display-3 mb-0 pb-5 mx-0 px-0 light-300 typo-space-line" style="font-size: 2.5rem; line-height: 1.3;">
+                                    <strong>Chương trình tuyển sinh đại học</strong>
+                                    <br>Ngành Công nghệ tài chính - Học viện Ngân hàng
+                                    <br>Khoá 2023-2024
+                                </h1>
+                                <p class="banner-body text-muted py-3">
+                                    Cung cấp thông tin chi tiết về phương thức tuyển sinh, chỉ tiêu, điều kiện xét tuyển và các tiêu chí ưu tiên cho ngành Công nghệ Tài chính tại Học viện Ngân hàng trong năm học 2023-2024.
+                                </p>
+                                <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="daihoc.html" role="button">Xem bài</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="py-5 row d-flex align-items-center">
+                            <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-5 pb-5">
+                                <h1 class="banner-heading h1 text-secondary display-3 mb-0 pb-5 mx-0 px-0 light-300 typo-space-line" style="font-size: 2.5rem; line-height: 1.3;">
+                                    <strong>Thông báo</strong> 
+                                    <br>Mức học phí dự kiến năm học 2023-2024
+                                </h1>
+                                <p class="banner-body text-muted py-3">
+                                    Cung cấp thông tin về mức học phí dự kiến của ngành Công nghệ Tài chính tại Học viện Ngân hàng trong năm học 2023-2024, giúp sinh viên và phụ huynh nắm bắt thông tin tài chính cần thiết.
+                                </p>
+                                <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="hocphi.html" role="button">Xem bài</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <a class="carousel-control-prev text-decoration-none" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                    <i class='bx bx-chevron-left'></i>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next text-decoration-none" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                    <i class='bx bx-chevron-right'></i>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <!-- End slider -->
+
+        </div>
+    </div>
+    <!-- End Banner Hero -->
+
+
+    <!-- Start Recent Work -->
+    <section class="py-5 mb-5">
+        <div class="container">
+            <div class="recent-work-header row text-center pb-5">
+                <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Tin tiêu điểm</h2>
+            </div>
+            <div class="row gy-5 g-lg-5 mb-4">
+
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de1.png'%}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300" style="font-size: 1.5rem; line-height: 1.3;"><strong>Học viện Ngân hàng tuyển sinh đại học năm 2025 (Đợt 1)</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                        📅 <span class="me-3">20/05/2025</span>
+                                        👁️ <span>3500</span>
+                                    </div>
+                                <p class="card-text mt-2">
+                                    Học viện Ngân hàng thông báo tuyển sinh đại học chính quy...
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de2.png' %}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300"><strong>Thông báo tổ chức lễ trao bằng tốt nghiệp năm 2025</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                    📅 <span class="me-3">17/05/2025</span>
+                                    👁️ <span>2400</span>
+                                </div>
+                            <p class="card-text mt-2">
+                                Học viện Ngân hàng thông báo tổ chức lễ trao bằng tốt nghiệp cho sinh viên...
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de3.png' %}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300"><strong>Fintech đối mặt với bài toán phục hồi khi thời kỳ "lãi suất vàng" trôi qua</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                    📅 <span class="me-3">13/05/2025</span>
+                                    👁️ <span>2000</span>
+                                </div>
+                            <p class="card-text mt-2">
+                                Trong bối cảnh lãi suất toàn cầu đang trên đà giảm dần, các doanh nghiệp fintech phải gồng mình…
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de4.png' %}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300"><strong>Thông báo mức thu học phí dự kiến năm 2025</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                    📅 <span class="me-3">24/02/2025</span>
+                                    👁️ <span>4700</span>
+                                </div>
+                            <p class="card-text mt-2">
+                                Học viện Ngân hàng thông báo mức thu học phí dự kiến năm 2025 cho các ngành...
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de5.png' %}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300"><strong>Thông báo chương trình đào tạo ngành Fintech 2025</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                    📅 <span class="me-3">08/02/2025</span>
+                                    👁️ <span>2500</span>
+                                </div>
+                            <p class="card-text mt-2">
+                                Chương trình đào tạo ngành Công nghệ tài chính năm đầu tiên tại Học viện Ngân Hàng có...
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+
+                <!-- Start Recent Work -->
+                <div class="col-md-4 mb-3">
+                    <a href="#" class="recent-work card border-0 shadow-lg overflow-hidden">
+                        <img class="recent-work-img card-img" src="{% static 'fintech/assets/img/tieu_de6.png' %}" alt="Card image">
+                        <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                                <h3 class="card-title light-300"><strong>Thông báo tổ chức cuộc thi FintechX</strong></h3>
+                                <div class="d-flex align-items-center mt-2 text-muted" style="font-size: 0.875rem;">
+                                    📅 <span class="me-3">31/01/2025</span>
+                                    👁️ <span>3100</span>
+                                </div>
+                            <p class="card-text mt-2">
+                                Chuyên ngành Công nghệ Tài chính tổ chức cuộc thi FintechX nhằm khuyến khích sinh viên...
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End Recent Work -->
+
+            </div>
+        </div>
+    </section>
+    <!-- End Recent Work -->
+
+
+
+    <!-- Start Footer -->
+    <footer class="bg-secondary pt-4">
+        <div class="container">
+            <div class="row py-4">
+
+                <div class="col-lg-3 col-12 align-left">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                        <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                    </a>
+                    <p class="text-light my-lg-4 my-2">
+                        Khoa Tài chính - Học viện Ngân hàng
+                    </p>
+                    <ul class="list-inline footer-icons light-300">
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="http://facebook.com/">
+                                <i class='bx bxl-facebook-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                                <i class='bx bxl-linkedin-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                                <i class='bx bxl-whatsapp-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                                <i class='bx bxl-flickr-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.medium.com/">
+                                <i class='bx bxl-medium-square bx-md' ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                        <ul class="list-unstyled text-light light-300">
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                            </li>
+                        </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-primary py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-start text-center text-light light-300">
+                            © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                            <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-end text-center text-light light-300">
+                            Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+
+    <!-- Bootstrap -->
+    <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Load jQuery require for isotope -->
+    <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+    <!-- Isotope -->
+    <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+    <!-- Page Script -->
+    <script>
+        $(window).load(function() {
+            // init Isotope
+            var $projects = $('.projects').isotope({
+                itemSelector: '.project',
+                layoutMode: 'fitRows'
+            });
+            $(".filter-btn").click(function() {
+                var data_filter = $(this).attr("data-filter");
+                $projects.isotope({
+                    filter: data_filter
+                });
+                $(".filter-btn").removeClass("active");
+                $(".filter-btn").removeClass("shadow");
+                $(this).addClass("active");
+                $(this).addClass("shadow");
+                return false;
+            });
+        });
+    </script>
+    <!-- Templatemo -->
+    <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+    <!-- Custom -->
+    <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+
+</body>
+
+</html>

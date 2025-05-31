@@ -1,0 +1,420 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đội ngũ giảng viên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS cần thiết -->
+    <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'fintech/assets/css/boxicon.min.css' %}" rel="stylesheet">
+    <link href="{% static 'fintech/assets/css/templatemo.css' %}" rel="stylesheet">
+    <link href="{% static 'fintech/assets/css/custom.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<<!-- Header -->
+<nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand h1" href="index.html">
+            <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+            <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="navbar-toggler-success">
+            <div class="flex-fill mx-xl-5 mb-2">
+                <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-primary rounded-pill px-3 " href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                        <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
+                            <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
+                            <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                        <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
+                            <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                        <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
+                            <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
+                            <li><a class="dropdown-item" href="dangky.html">Đăng ký tuyển sinh</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                        <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
+                            <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar align-self-center d-flex position-relative">
+                <a class="nav-link search-toggle" href="javascript:void(0);">
+                  <i class="bx bx-search-alt-2 bx-sm text-primary"></i>
+                </a>
+              
+                <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
+                  <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                  <button class="btn btn-primary">Tìm kiếm</button>
+                </div>
+              
+                <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
+                <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
+                <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+              </div>                  
+        </div>
+    </div>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchIcon = document.querySelector('.search-toggle');
+      const searchBox = document.querySelector('.search-box');
+  
+      searchIcon.addEventListener('click', () => {
+        searchBox.classList.toggle('show');
+      });
+  
+      // Click ra ngoài thì ẩn
+      document.addEventListener('click', function (event) {
+        const isClickInside = searchBox.contains(event.target) || searchIcon.contains(event.target);
+        if (!isClickInside) {
+          searchBox.classList.remove('show');
+        }
+      });
+    });
+  </script>      
+<!-- Close Header -->
+
+<!-- TIÊU ĐỀ -->
+<section class="bg-light py-5 text-center">
+    <div class="container">
+        <h1 class="text-primary display-5 fw-bold">GIẢNG VIÊN KHOA TÀI CHÍNH</h1>
+    </div>
+</section>
+
+<!-- DANH SÁCH GIẢNG VIÊN -->
+<section class="container py-5">
+
+    <!-- PHẦN 1: BAN LÃNH ĐẠO KHOA -->
+    <!-- Ban lãnh đạo -->
+    <div class="row justify-content-center mb-5">
+        <div class="text-center mb-5">
+        <h2 class="text-primary fw-bold">Ban lãnh đạo Khoa Tài chính</h2>
+        <p class="text-muted">Định hướng chiến lược và phát triển chương trình đào tạo</p>
+        </div>
+    
+        <!-- Lãnh đạo trái -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Vân Trang.jpg' %}" class="card-img-top rounded-circle mx-auto mt-4" style="width: 130px; height: 130px;">
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">PGS. TS. ĐỖ THỊ VÂN TRANG</h6>
+                    <p class="text-muted mb-1">Phó Trưởng khoa</p>
+                    <small>Bộ môn Tài chính Doanh nghiệp</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lãnh đạo giữa - trưởng khoa -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-lg h-100 bg-light">
+                <img src="{% static 'fintech/assets/img/Cô Xuân Anh.jpg' %}" class="card-img-top rounded-circle mx-auto mt-4 border border-4 border-primary" style="width: 150px; height: 150px;" alt="Trưởng khoa">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold text-primary">PGS. TS. TRẦN THỊ XUÂN ANH</h5>
+                    <p class="text-muted mb-1">Trưởng Khoa Tài chính</p>
+                    <small>Bộ môn Công nghệ Tài chính</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lãnh đạo phải -->
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Thầy Tiến Mạnh.jpg' %}" class="card-img-top rounded-circle mx-auto mt-4" style="width: 130px; height: 130px;" alt="Phó trưởng khoa 2">
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">PGS. TS. PHẠM TIẾN MẠNH</h6>
+                    <p class="text-muted mb-1">Phó Trưởng khoa</p>
+                    <small>Bộ môn Đầu tư Tài chính</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PHẦN 2: GIẢNG VIÊN -->
+    <div class="text-center mb-5 mt-4">
+        <h2 class="text-primary fw-bold">Đội ngũ giảng viên</h2>
+        <p class="text-muted">Tận tâm, chuyên môn cao, luôn đồng hành cùng sinh viên</p>
+    </div>
+
+    <div class="row text-center">
+        <!-- Giảng viên 4 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Thu.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV4">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. TRẦN THANH THU</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Công nghệ Tài chính</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 5 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Hồng Nhung.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV5">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. ĐÀO HỒNG NHUNG</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Công nghệ Tài chính</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 6 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Kim Chung.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV6">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. NGUYỂN THỊ KIM CHUNG</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Tài chính Doanh nghiệp</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 7 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Đào.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV7">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. NGUYỄN THỊ ĐÀO</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Tài chính Doanh nghiệp</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 8 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Ngân Hà.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV8">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. DƯƠNG NGÂN HÀ</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Kinh doanh Chứng khoán</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 9 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Hương.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV9">
+                <div class="card-body">
+                    <h6 class="fw-bold">TS. TRẦN THỊ THU HƯƠNG</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Kinh doanh Chứng khoán</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 10 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Cô Nga.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV10">
+                <div class="card-body">
+                    <h6 class="fw-bold">ThS. NGUYỄN THỊ NGA</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Tài chính Doanh nghiệp</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 11 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Thầy Nguyên.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV11">
+                <div class="card-body">
+                    <h6 class="fw-bold">ThS. BẠCH ĐỨC KHÔI NGUYÊN</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Công nghệ Tài chính</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giảng viên 12 -->
+        <div class="col-md-4 mb-5">
+            <div class="card border-0 shadow h-100">
+                <img src="{% static 'fintech/assets/img/Thầy Tuấn.jpg' %}" class="rounded-circle mx-auto mt-4" style="width: 120px; height: 120px;" alt="GV12">
+                <div class="card-body">
+                    <h6 class="fw-bold">ThS. LÊ MINH TUẤN</h6>
+                    <p class="text-muted mb-1">Giảng viên</p>
+                    <small>Bộ môn Công nghệ Tài chính</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Start Footer -->
+    <footer class="bg-secondary pt-4">
+        <div class="container">
+            <div class="row py-4">
+
+                <div class="col-lg-3 col-12 align-left">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                        <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                    </a>
+                    <p class="text-light my-lg-4 my-2">
+                        Khoa Tài chính - Học viện Ngân hàng
+                    </p>
+                    <ul class="list-inline footer-icons light-300">
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="http://facebook.com/">
+                                <i class='bx bxl-facebook-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                                <i class='bx bxl-linkedin-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                                <i class='bx bxl-whatsapp-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                                <i class='bx bxl-flickr-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.medium.com/">
+                                <i class='bx bxl-medium-square bx-md' ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                        <ul class="list-unstyled text-light light-300">
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                            </li>
+                        </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
+                        </li>
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-primary py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-start text-center text-light light-300">
+                            © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                            <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-end text-center text-light light-300">
+                            Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+<!-- Bootstrap -->
+<script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Load jQuery require for isotope -->
+<script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+<!-- Isotope -->
+<script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+<!-- Page Script -->
+<script>
+    $(window).load(function() {
+        // init Isotope
+        var $projects = $('.projects').isotope({
+            itemSelector: '.project',
+            layoutMode: 'fitRows'
+        });
+        $(".filter-btn").click(function() {
+            var data_filter = $(this).attr("data-filter");
+            $projects.isotope({
+                filter: data_filter
+            });
+            $(".filter-btn").removeClass("active");
+            $(".filter-btn").removeClass("shadow");
+            $(this).addClass("active");
+            $(this).addClass("shadow");
+            return false;
+        });
+    });
+</script>
+<!-- Templatemo -->
+<script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+<!-- Custom -->
+<script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+</body>
+</html>
