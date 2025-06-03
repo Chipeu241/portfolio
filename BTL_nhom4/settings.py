@@ -84,9 +84,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ✅ Auto collectstatic nếu đang chạy trong môi trường Railway
-if os.getenv("RAILWAY_ENVIRONMENT"):
-    try:
-        call_command("collectstatic", interactive=False)
-    except Exception as e:
-        print("Collectstatic failed:", e)
+
