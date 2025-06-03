@@ -18,3 +18,15 @@ def tintuc(request):
     return render(request, 'fintech/tintuc.html')
 def cuocthi(request):
     return render(request, 'fintech/cuocthi.html')
+def tintuc1_view(request):
+    return render(request, 'fintech/tintuc1.html')
+def tintuc2_view(request):
+    return render(request, 'fintech/tintuc2.html')
+def tintuc3_view(request):
+    return render(request, 'fintech/tintuc3.html')
+def cuocthi1_view(request):
+    return render(request, 'fintech/cuocthi1.html')
+def cuocthi2_view(request):
+    return render(request, 'fintech/cuocthi2.html')
+def cuocthi3_view(request):
+    return render(request, 'fintech/cuocthi3.html')
