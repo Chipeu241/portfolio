@@ -127,18 +127,11 @@ https://templatemo.com/tm-561-purple-buzz
             </div>
         </div>
     </div>
+
     <!-- End Banner Hero -->
 
  <!-- Start Our Work -->
-<section class="container py-3">
-  <div class="row justify-content-center my-5">
-    <div class="filter-btns shadow-md rounded-pill text-center col-auto">
-      <a class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4 active" data-filter=".project" href="#">Tất cả</a>
-      <a class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4" data-filter=".business" href="#">Trường</a>
-      <a class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4" data-filter=".marketing" href="#">Thông báo</a>
-      <a class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4" data-filter=".social" href="#">Tin tức ngành</a>
-    </div>
-  </div>
+
   <section class="container py-3">
   <div class="row pt-4"> <!-- Giảm pt-5 xuống pt-4 -->
     <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
@@ -202,11 +195,11 @@ https://templatemo.com/tm-561-purple-buzz
         </form>
     </div>
 </div> <!-- đóng div đã thêm mb-5 -->
-
-
+ 
 <!-- End Blog Cover -->
- <footer class="bg-secondary pt-4">
-      <div class="container-fluid">
+  <!-- Start Footer -->
+    <footer class="bg-secondary pt-4">
+      <div class="container text-center">
           <div class="row py-4">
 
               <div class="col-lg-3 col-12 align-left">
@@ -300,7 +293,7 @@ https://templatemo.com/tm-561-purple-buzz
       </div>
 
       <div class="w-100 bg-primary py-3">
-          <div class="container-fluid">
+          <div class="container">
               <div class="row pt-2">
                   <div class="col-lg-6 col-sm-12">
                       <p class="text-lg-start text-center text-light light-300">
@@ -320,39 +313,37 @@ https://templatemo.com/tm-561-purple-buzz
   </footer>
   <!-- End Footer -->
 
-
-  <!-- Bootstrap -->
-  <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
-  <!-- Load jQuery require for isotope -->
-  <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
-  <!-- Isotope -->
-  <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
-  <!-- Page Script -->
-  <script>
-      $(window).load(function() {
-          // init Isotope
-          var $projects = $('.projects').isotope({
-              itemSelector: '.project',
-              layoutMode: 'fitRows'
-          });
-          $(".filter-btn").click(function() {
-              var data_filter = $(this).attr("data-filter");
-              $projects.isotope({
-                  filter: data_filter
-              });
-              $(".filter-btn").removeClass("active");
-              $(".filter-btn").removeClass("shadow");
-              $(this).addClass("active");
-              $(this).addClass("shadow");
-              return false;
-          });
-      });
-  </script>
-  <!-- Templatemo -->
-  <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
-  <!-- Custom -->
-  <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
-
-</body>
+     <!-- Bootstrap -->
+     <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+     <!-- Load jQuery require for isotope -->
+     <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+     <!-- Isotope -->
+     <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+     <!-- Page Script -->
+     <script>
+         $(window).load(function() {
+             // init Isotope
+             var $projects = $('.projects').isotope({
+                 itemSelector: '.project',
+                 layoutMode: 'fitRows'
+             });
+             $(".filter-btn").click(function() {
+                 var data_filter = $(this).attr("data-filter");
+                 $projects.isotope({
+                     filter: data_filter
+                 });
+                 $(".filter-btn").removeClass("active");
+                 $(".filter-btn").removeClass("shadow");
+                 $(this).addClass("active");
+                 $(this).addClass("shadow");
+                 return false;
+             });
+         });
+     </script>
+     <!-- Templatemo -->
+     <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+     <!-- Custom -->
+     <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+ </body>
 
 </html>
