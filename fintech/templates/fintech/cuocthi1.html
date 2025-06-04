@@ -80,9 +80,11 @@ https://templatemo.com/tm-561-purple-buzz
                   </a>
                 
                   <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                    <button class="btn btn-primary">Tìm kiếm</button>
-                  </div>
+                    <form action="{% url 'search' %}" method="get" class="d-flex">
+                        <input type="text" name="q" id="searchInput" class="form-control me-2" placeholder="Tìm kiếm..." required>
+                        <button type="submit" class="btn btn-primary" id="searchButton">Tìm kiếm</button>
+                    </form>
+                </div>
                 
                   <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
                   <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
