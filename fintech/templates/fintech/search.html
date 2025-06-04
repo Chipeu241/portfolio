@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả tìm kiếm</title>
+</head>
+<body>
+    <h2>Kết quả tìm kiếm cho: "{{ query }}"</h2>
+
+
+{% if ket_qua %}
+    <ul>
+        {% for bai in ket_qua %}
+            <li><a href="{{ bai.get_absolute_url }}">{{ bai.tieuDe }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Không có kết quả nào cho từ khóa "{{ query }}"</p>
+{% endif %}
+
+
+</body>
+</html>

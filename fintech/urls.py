@@ -16,4 +16,5 @@ urlpatterns = [
     path('cuocthi1/', views.cuocthi1, name='cuocthi1'),
     path('cuocthi2/', views.cuocthi2, name='cuocthi2'),
     path('cuocthi3/', views.cuocthi3, name='cuocthi3'),
+    path('search/', views.search, name='search'),
 ]
