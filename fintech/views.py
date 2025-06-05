@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Post, Danhmuc, Comment
+from .forms import CommentForm
 # Create your views here.
 def index(request):
     return render(request, 'fintech/index.html')
