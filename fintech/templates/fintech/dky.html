@@ -3,11 +3,11 @@
 <html lang="en">
 
 <head>
-    <title>Chương trình đào tạo</title>
+    <title>Ngành Công nghệ tài chính - Học viện Ngân hàng</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}">
     <!-- Load Require CSS -->
     <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Font CSS -->
@@ -17,132 +17,100 @@
     <link rel="stylesheet" href="{% static 'fintech/assets/css/templatemo.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'fintech/assets/css/custom.css' %}">
-    <style>
-        .background-section {
-          background-image: url("{% static 'fintech/assets/img/FT.jpg' %}");
-          background-size: cover;
-          background-position: center;
-          color: white;
-          padding: 80px 0;
-          position: relative;
-          text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-        }
-        .background-section {
-            background-image: url("{% static 'fintech/assets/img/FT.jpg' %}");
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 80px 0;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-            position: relative; /* Thêm dòng này để ::before hoạt động đúng */
-            }
-
-        .background-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); 
-            z-index: 1;
-        }
-
-            .background-section h1,
-            .background-section p {
-            position: relative;
-            z-index: 2;
-            color: white;
-            }
-
-            .title {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 0;
-            }
+<style>
+    /* === CƠ BẢN === */
 
 
-            table.schedule {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            }
+h1, h2, h3 {
+    color: #15395A;
+}
 
+h2 {
+  text-align: center;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
 
-            .schedule thead th {
-            background-color: #d195ef;
-            padding: 10px;
-            border: 1px solid #000;
-            text-align: left;
-            }
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+    flex: 1;
+}
 
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
 
-            .schedule td {
-            padding: 10px;
-            border: 1px solid #000;
-            }
+/* === NÚT GỬI === */
+button[type="submit"], .btn-submit {
+    background-color: #0e3c74;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
 
-            .schedule .semester-row td,
-            .schedule .section-row td {
-            background-color: #f9f9f9;
-            /* font-weight: bold; */
-            font-family: Arial, sans-serif;
-            border: 1px solid #000;
-            }
-            /* footer */
-            .footer-wrapper {
-            width: 100%;
-            overflow-x: hidden; /* Ngăn xuất hiện thanh cuộn ngang */
-            }
+button[type="submit"]:hover, .btn-submit:hover {
+    background-color: #2057a4;
+}
 
-            .footer-wrapper > .bg-secondary,
-            .footer-wrapper > .bg-primary {
-            width: 100%;
-            }
+/* === PHẦN SECTION === */
+section {
+    margin: 30px auto;
+    padding: 20px 40px;
+    background-color: white;
+    border-radius: 8px;
+    max-width: 900px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
 
-            .content-outline {
-            padding: 15px 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            }
-            /* bố cục nội dung c3 ctdt */
-            .outline-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            }
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0e3c74;
+    margin-bottom: 15px;
+}
 
-            .outline-header i {
-            margin-right: 8px;
-            }
+/* === FOOTER === */
+footer {
+    background-color: #3a58b4;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    margin-top: 40px;
+}
 
-            .outline-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-            }
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    section {
+        padding: 20px;
+    }
 
-            .outline-list li {
-            margin-bottom: 8px;
-            }
+    input, select, textarea {
+        font-size: 14px;
+    }
+}
+</style>
 
-            .outline-list a {
-            text-decoration: none;
-            }
-
-            .outline-list a:hover {
-            text-decoration: underline;
-            }
-      </style>      
-</head>
-
-<body>
-    <!-- Header -->
+   
+<!-- Header -->
     <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand h1" href="{% url 'index' %}">
-                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+            <a class="navbar-brand h1" href="index.html">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
                 <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -182,7 +150,7 @@
                             <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
                                 <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
                                 <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
-                                <li><a class="dropdown-item" href="{% url 'dky' %}">Đăng ký tuyển sinh</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -192,10 +160,8 @@
                     </a>
                   
                     <div class="search-box position-absolute p-2 rounded shadow" style="right: 20px; top: 60px; background: #fff; z-index: 1000; display: none;">
-                        <form action="{% url 'search' %}" method="get" class="d-flex">
-                            <input type="text" name="q" id="searchInput" class="form-control me-2" placeholder="Tìm kiếm..." required>
-                            <button type="submit" class="btn btn-primary" id="searchButton">Tìm kiếm</button>
-                        </form>
+                      <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                      <button class="btn btn-primary">Tìm kiếm</button>
                     </div>
                   
                     <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
@@ -222,69 +188,244 @@
             }
           });
         });
-      </script>  
+      </script>      
     <!-- Close Header -->
+<body>
+  <div class="container">
+    <h2>ĐĂNG KÝ TUYỂN SINH - HỌC VIỆN NGÂN HÀNG</h2>
+   <form method="POST" action="/submit/">
+        {% csrf_token %}
+      <!-- 1. Thông tin cá nhân -->
+      <h4>I. THÔNG TIN CÁ NHÂN</h4>
+      <label>Họ và tên</label>
+      <input type="text" name="hoTen" required>
+
+      <div class="row">
+        <div>
+          <label>Ngày sinh</label>
+          <input type="date" name="ngaySinh" required>
+        </div>
+        <div>
+          <label>Giới tính</label>
+          <select name="gioiTinh" required>
+            <option value="">-- Chọn --</option>
+            <option>Nam</option>
+            <option>Nữ</option>
+            <option>Khác</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Số CMND/CCCD</label>
+      <input type="text" name="cccd" required>
+
+      <div class="row">
+        <div>
+          <label>Ngày cấp</label>
+          <input type="date" name="ngayCap">
+        </div>
+        <div>
+          <label>Nơi cấp</label>
+          <input type="text" name="noiCap">
+        </div>
+      </div>
+
+      <!-- 2. Thông tin liên hệ -->
+      <h4>II. THÔNG TIN LIÊN HỆ</h4>
+      <label>Số điện thoại</label>
+      <input type="tel" name="sdt" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Địa chỉ thường trú</label>
+      <textarea name="diaChi" rows="2" required></textarea>
+
+      <!-- 3. Thông tin học tập -->
+      <h4>III. THÔNG TIN HỌC TẬP</h4>
+      <label>Tỉnh/TP học THPT</label>
+      <input type="text" name="tinhTHPT" required>
+
+      <label>Trường THPT</label>
+      <input type="text" name="truongTHPT" required>
+
+      <div class="row">
+        <div>
+          <label>Năm tốt nghiệp</label>
+          <select name="namTotNghiep" required>
+            <option value="">-- Chọn --</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+            <option>2020</option>
+            <option>2019</option>
+            <option>2018</option>
+            <option>2017</option>
+            <option>2016</option>
+            <option>2015</option>
+            <option>2014</option>
+            <option>2013</option>
+            <option>2012</option>
+            <option>2011</option>
+            <option>2010</option>
+            <option>2009</option>
+            <option>2008</option>
+            <option>2007</option>
+            <option>2006</option>
+            <option>2005</option>
+            <option>2004</option>
+            <option>2003</option>
+            <option>2002</option>
+            <option>2001</option>
+            <option>2000</option>
+          </select>
+        </div>
+        <div>
+          <label>Học lực lớp 12</label>
+          <select name="hocLuc" required>
+            <option value="">-- Chọn --</option>
+            <option>Giỏi</option>
+            <option>Khá</option>
+            <option>Trung bình</option>
+            <option>Yếu</option>
+          </select>
+        </div>
+      </div>
+      <h4>IV.THÔNG TIN TRƯỜNG HỌC THEO TỪNG LỚP:</h4>
+      <!-- Lớp 10 -->
+      <label><strong>Lớp 10</strong></label>
+      <label>Tên trường THPT</label>
+      <input type="text" name="truongLop10" required>
+      <label>Tỉnh/Thành phố</label>
+      <input type="text" name="quanHuyenLop10" required>
+      <label>Quận/Huyện</label>
+      <input type="text" name="tinhThanhLop10" required>
+
+      <!-- Lớp 11 -->
+      <label><strong>Lớp 11</strong></label>
+      <label>Tên trường THPT</label>
+      <input type="text" name="truongLop11" required>
+      <label>Tỉnh/Thành phố</label>
+      <input type="text" name="quanHuyenLop10" required>
+      <label>Quận/Huyện</label>
+      <input type="text" name="tinhThanhLop10" required>
+
+      <!-- Lớp 12 -->
+      <label><strong>Lớp 12</strong></label>
+      <label>Tên trường THPT</label>
+      <input type="text" name="truongLop12" required>
+      <label>Tỉnh/Thành phố</label>
+      <input type="text" name="quanHuyenLop10" required>
+      <label>Quận/Huyện</label>
+      <input type="text" name="tinhThanhLop10" required>
+
+    
 
 
-<!-- fintech học phí -->
-<div class="background-section text-center py-5">
-  <h1 class="pricing-header h2 semi-bold-600">Mức thu học phí</h1>
-  <p class="pricing-footer fs-2"> ngành Công nghệ Tài chính</p>
-</div>
+      <!-- 4. Phương thức và nguyện vọng -->
+      <h4>V. PHƯƠNG THỨC XÉT TUYỂN VÀ NGUYỆN VỌNG</h4>
+      <label>Phương thức xét tuyển</label>
+      <select name="phuongThuc" required>
+        <option value="">-- Chọn --</option>
+        <option>Xét học bạ</option>
+        <option>Xét điểm thi THPT</option>
+        <option>Xét tuyển kết hợp (chứng chỉ, học sinh giỏi...)</option>
+      </select>
 
-<!-- nội dung -->
-<section class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
+      <label>Ngành đăng ký</label>
+      <select name="nganh" required>
+        <option value="">-- Chọn ngành --</option>
+        <option>Công nghệ Tài chính</option>
+       
+      </select>
 
-      <h2 class="h4 text-left text-primary mb-4">1. Cơ sở pháp lý</h2>
-      <p class="light-400">
-        Mức thu học phí của ngành Công nghệ tài chính được áp dụng theo Nghị định 81/2021/NĐ-CP của Chính phủ quy định về cơ chế thu, quản lý học phí đối với cơ sở giáo dục thuộc hệ thống giáo dục quốc dân.
-      </p>
+      <label>Tổ hợp xét tuyển</label>
+      <select name="toHop" required>
+        <option value="">-- Chọn tổ hợp --</option>
+        <option>A00 (Toán - Lý - Hóa)</option>
+        <option>A01 (Toán - Lý - Anh)</option>
+        <option>D01 (Toán - Văn - Anh)</option>
+        <option>D07 (Toán - Hóa - Anh)</option>
+      </select>
 
-      <h2 class="h4 text-left text-primary mt-5 mb-4">2. Mức thu học phí dự kiến</h2>
+      <label>Nguyện vọng khác (nếu có)</label>
+      <textarea name="nguyenVongKhac" placeholder="Ghi rõ ngành và tổ hợp nếu có nguyện vọng phụ..."></textarea>
 
-      <table class="table table-bordered text-center">
-        <thead class="table-light">
-          <tr>
-            <th>Năm học</th>
-            <th>Mức học phí (đồng/tín chỉ)</th>
-            <th>Ghi chú</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2024 - 2025</td>
-            <td>740.000</td>
-            <td>Áp dụng cho sinh viên chính quy năm 1</td>
-          </tr>
-          <tr>
-            <td>2025 - 2026</td>
-            <td>785.000</td>
-            <td>Dự kiến điều chỉnh theo quy định</td>
-          </tr>
-          <tr>
-            <td>2026 - 2027</td>
-            <td>810.000</td>
-            <td>Dự kiến điều chỉnh theo quy định</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- 5. Chứng chỉ ngoại ngữ -->
+      <h4>VI. CHỨNG CHỈ NGOẠI NGỮ (NẾU CÓ)</h4>
+      <div class="row">
+        <div>
+          <label>Loại chứng chỉ</label>
+          <input type="text" name="loaiChungChi" placeholder="VD: IELTS, TOEFL">
+        </div>
+        <div>
+          <label>Điểm</label>
+          <input type="text" name="diemChungChi">
+        </div>
+      </div>
 
-      <h2 class="h4 text-left text-primary mt-5 mb-4">3. Lưu ý</h2>
+      <label>Ngày cấp chứng chỉ</label>
+      <input type="date" name="ngayCapChungChi">
 
-      <ul class="light-400">
-        <li>Mức học phí có thể thay đổi theo chính sách của Nhà nước và thông báo từ Học viện Ngân hàng.</li>
-        <li>Học phí được tính theo số lượng tín chỉ mà sinh viên đăng ký trong mỗi học kỳ.</li>
-        <li>Sinh viên cần theo dõi thông báo chính thức từ nhà trường để nắm thông tin cập nhật.</li>
-      </ul>
+      <!-- 6. Tải tài liệu -->
+     
+      <h4>VII. TÀI LIỆU ĐÍNH KÈM</h4>
 
-    </div>
+      <label>Tài liệu ảnh thẻ (3x4 hoặc 4x6)</label>
+      <input type="file" name="anhThe" accept=".jpg,.jpeg,.png" required>
+
+      <label>Tài liệu CCCD mặt trước</label>
+      <input type="file" name="cccdTruoc" accept=".jpg,.jpeg,.png,.pdf" required>
+
+      <label>Tài liệu CCCD mặt sau</label>
+      <input type="file" name="cccdSau" accept=".jpg,.jpeg,.png,.pdf" required>
+
+      <label>Tài liệu học bạ THPT (PDF/JPG)</label>
+      <input type="file" name="hocBa" accept=".pdf,.jpg,.jpeg,.png" required>
+
+      <label>Tài liệu chứng chỉ ngoại ngữ (nếu có)</label>
+      <input type="file" name="fileChungChi" accept=".pdf,.jpg,.jpeg,.png">
+      <!-- 8. Thông tin ưu tiên -->
+      <h4>VIII. THÔNG TIN ƯU TIÊN</h4>
+
+      <label>Khu vực ưu tiên</label>
+      <select name="khuVucUuTien" required>
+       <option value="">-- Chọn --</option>
+       <option value="">--Không thuộc khu vực ưu tiên--</option>
+       <option value="KV1">KV1</option>
+       <option value="KV2-NT">KV2-NT</option>
+       <option value="KV2">KV2</option>
+       <option value="KV3">KV3</option>
+      </select>
+        <label>Đối tượng ưu tiên:</label><br>
+        <select name="uutien" required>
+            <option value="">-- Chọn đối tượng --</option>
+            <option value="Không">Không ưu tiên</option>
+            <option value="Con TBLS">Con thương binh liệt sĩ</option>
+            <option value="Hộ nghèo">Thuộc hộ nghèo</option>
+            <option value="Dân tộc thiểu số">Dân tộc thiểu số</option>
+        </select><br><br>
+ 
+
+      <label>Ghi chú (nếu có minh chứng, hoặc mô tả rõ hơn)</label>
+      <textarea name="ghiChuUuTien" placeholder="VD: Có giấy xác nhận hộ nghèo, dân tộc Mường, sinh sống tại KV1..."></textarea>
+
+    
+      <!-- 7. Cam kết -->
+      <h4>IX. CAM KẾT</h4>
+      <label>
+        <input type="checkbox" name="camKet" required>
+        Tôi xin cam đoan mọi thông tin trên là đúng sự thật. Nếu sai, tôi hoàn toàn chịu trách nhiệm.
+      </label>
+      
+     <button type="submit">GỬI ĐĂNG KÝ</button>
+    </form>
   </div>
-</section>
 
 
-    <!-- Start Footer -->
+ <!-- Start Footer -->
     <footer class="bg-secondary pt-4">
         <div class="container">
             <div class="row py-4">
@@ -401,36 +542,32 @@
     <!-- End Footer -->
 
 
-<!-- Bootstrap -->
-<script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
-<!-- Load jQuery require for isotope -->
-<script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
-<!-- Isotope -->
-<script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
-<!-- Page Script -->
-<script>
-    $(window).load(function() {
-        // init Isotope
-        var $projects = $('.projects').isotope({
-            itemSelector: '.project',
-            layoutMode: 'fitRows'
-        });
-        $(".filter-btn").click(function() {
-            var data_filter = $(this).attr("data-filter");
-            $projects.isotope({
-                filter: data_filter
+    <!-- Bootstrap -->
+    <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Load jQuery require for isotope -->
+    <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+    <!-- Isotope -->
+    <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+    <!-- Page Script -->
+    <script>
+        $(window).load(function() {
+            // init Isotope
+            var $projects = $('.projects').isotope({
+                itemSelector: '.project',
+                layoutMode: 'fitRows'
             });
-            $(".filter-btn").removeClass("active");
-            $(".filter-btn").removeClass("shadow");
-            $(this).addClass("active");
-            $(this).addClass("shadow");
-            return false;
+            $(".filter-btn").click(function() {
+                var data_filter = $(this).attr("data-filter");
+                $projects.isotope({
+                    filter: data_filter
+                });
+                $(".filter-btn").removeClass("active");
+                $(".filter-btn").removeClass("shadow");
+                $(this).addClass("active");
+                $(this).addClass("shadow");
+                return false;
+            });
         });
-    });
-</script>
-<!-- Templatemo -->
-<script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
-<!-- Custom -->
-<script src="{% static 'fintech/assets/js/custom.js' %}"></script>
-
+    </script>
 </body>
+</html>

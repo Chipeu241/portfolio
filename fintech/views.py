@@ -71,3 +71,17 @@ def search(request):
     for keyword, view_name in mapping.items():
         if keyword in query:
             return redirect(view_name)
+def dky(request):
+    return render(request, 'fintech/dky.html')
+
+@csrf_exempt
+def submit(request):
+    if request.method == 'POST':
+        # Bạn có thể lưu dữ liệu ở đây nếu muốn
+        # Ví dụ:
+        # hoten = request.POST['hoten']
+        return redirect('thanhcong')  # Chuyển hướng tới trang thành công
+    return redirect('dky')
+
+def thanhcong(request):
+    return render(request, 'fintech/thanhcong.html')
