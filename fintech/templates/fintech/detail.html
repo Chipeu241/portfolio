@@ -1,4 +1,5 @@
 {% load static %}
+{% load form_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,7 @@ https://templatemo.com/tm-561-purple-buzz
 -->
 </head>
 
-<body>
+<body class="bg-light text-dark" style="font-family: 'Open Sans', sans-serif;">
   <!-- Header -->
   <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
       <div class="container d-flex justify-content-between align-items-center">
@@ -127,88 +128,91 @@ https://templatemo.com/tm-561-purple-buzz
             </div>
         </div>
     </div>
+
     <!-- End Banner Hero -->
 
  <!-- Start Our Work -->
-    <!-- Bài viết -->
-<main class="container py-5">
-    <!-- trong tiêu đề hoặc menu -->
-        {% if request.path == '/tintuc/' %}
-            <h2>Tin tức</h2>
-        {% elif request.path == '/cuocthi/' %}
-            <h2>Cuộc thi / Sự kiện / Hội thảo</h2>
-        {% endif %}
 
-  <!-- Nút lọc -->
-  <div class="row justify-content-center my-5">
-    <div class="filter-btns shadow-md rounded-pill text-center col-auto">
-      <button class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4 active" data-filter="*">
-        Tất cả
-      </button>
-      {% for dm in danhmucs %}
-        <button class="filter-btn btn rounded-pill btn-outline-primary border-0 m-md-2 px-md-4" data-filter=".{{ dm.ten|cut:' ' }}">
-          {{ dm.ten }}
-        </button>
-      {% endfor %}
-    </div>
+<div class="container">
+  <div class="mx-auto" style="max-width: 900px; margin-top: 40px;">
+    
+    <!-- Tiêu đề cách banner 40px -->
+    <h1 class="text-center fw-bold mb-3" style="color: #5e0bb6;">
+      {{ post.title }}
+    </h1>
+    
+    <!-- Ngày đăng lệch trái -->
+    <p class="text-muted mb-4" style="text-align: left;">
+      Ngày đăng: {{ post.publish_date|date:"d/m/Y" }}
+    </p>
+
+    {% if post.image and 'img' not in post.content %}
+      <img src="{{ post.image.url }}" class="img-fluid d-block mx-auto mb-4" alt="{{ post.title }}">
+    {% endif %}
+
+    <article class="fs-5">
+      {{ post.content|safe }}
+    </article>
+
   </div>
+</div>
+<!--comment-->
+<div class="comment-area px-5" style="padding-left: 80px; padding-right: 80px;">
 
-  <!-- Danh sách bài viết -->
-  <div class="row posts-grid">
-      {% for post in posts %}
-      <div class="col-md-6 col-lg-4 mb-4 post-item {{ post.danhmuc.ten|cut:' ' }}">
-        <div class="card h-100 shadow-sm">
-          {% if post.image %}
-            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="{% url 'detail' post.ordering %}" class="text-decoration-none">
-                {{ post.title }}
-              </a>
-            </h5>
-            <p class="text-muted"><i class="bi bi-calendar"></i> {{ post.publish_date|date:"d/m/Y" }}</p>
-            <span class="badge bg-primary">{{ post.status }}</span>
-          </div>
+  <!-- Form bình luận -->
+  <form method="POST" class="row g-3 mb-5 mx-auto" style="max-width: 960px;">
+    {% csrf_token %}
+
+    <div class="col-12">
+      <label for="id_content" class="form-label fw-bold">Nội dung</label>
+      {{ form.content|add_class:"form-control form-control-lg shadow-sm border-0" }}
+      <style>
+        #id_content {
+          max-height: 200px;
+          resize: vertical;
+        }
+      </style>
+    </div>
+
+    <div class="col-md-6">
+      <label for="id_name" class="form-label fw-bold">Họ và tên</label>
+      {{ form.name|add_class:"form-control form-control-lg shadow-sm border-0" }}
+    </div>
+
+    <div class="col-md-6">
+      <label for="id_email" class="form-label fw-bold">Email</label>
+      {{ form.email|add_class:"form-control form-control-lg shadow-sm border-0" }}
+    </div>
+
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-secondary px-4 py-2 rounded-pill">💬 Gửi bình luận</button>
+    </div>
+  </form>
+
+  <!-- Danh sách bình luận -->
+  <div id="comment-section" class="mt-5 mx-auto" style="max-width: 960px;">
+    <h5 class="fw-bold mb-4">Bình luận</h5>
+
+    {% for comment in comments %}
+      <div class="d-flex align-items-start mb-4 p-3 bg-light rounded shadow-sm">
+        <!-- Avatar giả định -->
+        <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" alt="avatar" width="50" height="50" class="rounded-circle me-3">
+
+        <div>
+          <p class="mb-1 fw-bold">{{ comment.name }} <small class="text-muted">({{ comment.email }})</small></p>
+          <p class="mb-0">{{ comment.content }}</p>
         </div>
       </div>
     {% empty %}
-      <p class="text-center">Chưa có bài viết nào.</p>
+      <p>Chưa có bình luận nào.</p>
     {% endfor %}
-  </div>
-</main>
-
-
-   
-  </div>
-
-  <div class="row mt-5"> <!-- THÊM mt-5 ở đây để tạo khoảng cách trên -->
-  <div class="btn-toolbar justify-content-center pb-4" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group me-2" role="group" aria-label="First group">
-      <button type="button" class="btn btn-secondary text-white">Previous</button>
-    </div>
-    <div class="btn-group me-2" role="group" aria-label="Second group">
-      <button type="button" class="btn btn-light">1</button>
-    </div>
-    <div class="btn-group" role="group" aria-label="Third group">
-      <button type="button" class="btn btn-secondary text-white">Next</button>
-    </div>
   </div>
 </div>
 
-</section>
-
-    <!-- End Our Work -->
-
-    <!-- Start Feature Work -->
-    
-  
-    <!-- End Feature Work -->
-
-
-    <!-- Start Footer -->
+<!-- End Blog Cover -->
+  <!-- Start Footer -->
     <footer class="bg-secondary pt-4">
-      <div class="container">
+      <div class="container text-center">
           <div class="row py-4">
 
               <div class="col-lg-3 col-12 align-left">
@@ -322,39 +326,37 @@ https://templatemo.com/tm-561-purple-buzz
   </footer>
   <!-- End Footer -->
 
-
-  <!-- Bootstrap -->
-  <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
-  <!-- Load jQuery require for isotope -->
-  <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
-  <!-- Isotope -->
-  <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
-  <!-- Page Script -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-<script>
-  $(document).ready(function () {
-    var $grid = $('.posts-grid').isotope({
-      itemSelector: '.post-item',
-      layoutMode: 'fitRows'
-    });
-
-    $('.filter-btn').click(function () {
-      $('.filter-btn').removeClass('active');
-      $(this).addClass('active');
-      var filterValue = $(this).attr('data-filter');
-      $grid.isotope({filter: filterValue});
-    });
-  });
-</script>
-
-
-
-  <!-- Templatemo -->
-  <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
-  <!-- Custom -->
-  <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
-
-</body>
+     <!-- Bootstrap -->
+     <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
+     <!-- Load jQuery require for isotope -->
+     <script src="{% static 'fintech/assets/js/jquery.min.js' %}"></script>
+     <!-- Isotope -->
+     <script src="{% static 'fintech/assets/js/isotope.pkgd.js' %}"></script>
+     <!-- Page Script -->
+     <script>
+         $(window).load(function() {
+             // init Isotope
+             var $projects = $('.projects').isotope({
+                 itemSelector: '.project',
+                 layoutMode: 'fitRows'
+             });
+             $(".filter-btn").click(function() {
+                 var data_filter = $(this).attr("data-filter");
+                 $projects.isotope({
+                     filter: data_filter
+                 });
+                 $(".filter-btn").removeClass("active");
+                 $(".filter-btn").removeClass("shadow");
+                 $(this).addClass("active");
+                 $(this).addClass("shadow");
+                 return false;
+             });
+         });
+     </script>
+     <!-- Templatemo -->
+     <script src="{% static 'fintech/assets/js/templatemo.js' %}"></script>
+     <!-- Custom -->
+     <script src="{% static 'fintech/assets/js/custom.js' %}"></script>
+ </body>
 
 </html>
