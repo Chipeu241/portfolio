@@ -4,10 +4,9 @@ from django.core.management import call_command  # THÊM DÒNG NÀY (phía trên
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 SECRET_KEY = 'django-insecure-27^sp#l54y=v^m3$t-63kf9)ep@0je5b1d+zicbx$8-aeox%^q'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['portfolio-production-092b.up.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -108,3 +107,6 @@ CKEDITOR_CONFIGS = {
         'width': 'auto',
     }
 }
+CSRF_TRUSTED_ORIGINS = [
+    'https://portfolio-production-092b.up.railway.app',
+]
