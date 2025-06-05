@@ -15,22 +15,6 @@ def dh(request):
     return render(request, 'fintech/dh.html')
 def sdh(request):
     return render(request, 'fintech/sdh.html')
-def tintuc(request):
-    return render(request, 'fintech/tintuc.html')
-def cuocthi(request):
-    return render(request, 'fintech/cuocthi.html')
-def tintuc1(request):
-    return render(request, 'fintech/tintuc1.html')
-def tintuc2(request):
-    return render(request, 'fintech/tintuc2.html')
-def tintuc3(request):
-    return render(request, 'fintech/tintuc3.html')
-def cuocthi1(request):
-    return render(request, 'fintech/cuocthi1.html')
-def cuocthi2(request):
-    return render(request, 'fintech/cuocthi2.html')
-def cuocthi3(request):
-    return render(request, 'fintech/cuocthi3.html')
 # Xử lý tìm kiếm thông minh
 def search(request):
     query = request.GET.get('q', '').strip().lower()
@@ -94,7 +78,7 @@ def search(request):
             return redirect(view_name)
 
     return render(request, 'fintech/search.html', {'ket_qua': [], 'query': query})
-    
+
 def dky(request):
     return render(request, 'fintech/dky.html')
 
@@ -111,3 +95,30 @@ def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
 def dky(request):
     return render(request, 'fintech/dky.html')
+def tintuc(request):
+    danhmucs = Danhmuc.objects.filter(loai='tintuc')
+    posts = Post.objects.filter(status='published', danhmuc__loai='tintuc')
+    return render(request, 'fintech/tintuc.html', {'posts': posts, 'danhmucs': danhmucs})
+def cuocthi(request):
+    danhmucs = Danhmuc.objects.filter(loai='cuocthi')
+    posts = Post.objects.filter(status='published', danhmuc__loai='cuocthi')
+    return render(request, 'fintech/cuocthi.html', {'posts': posts, 'danhmucs': danhmucs})
+def detail(request, ordering):
+    post = get_object_or_404(Post, ordering=ordering)
+    comments = Comment.objects.filter(post=post).order_by('-created_at')
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_cmt = form.save(commit=False)
+            new_cmt.post = post
+            new_cmt.save()
+            return redirect('detail', ordering=post.ordering)
+    else:
+        form = CommentForm()
+
+    return render(request, 'fintech/detail.html', {
+        'post': post,
+        'comments': comments,
+        'form': form,
+    })
