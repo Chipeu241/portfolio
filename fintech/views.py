@@ -35,23 +35,43 @@ def cuocthi3(request):
 def search(request):
     query = request.GET.get('q', '').strip().lower()
 
-    # Trường hợp chuyển thẳng đến bài viết chi tiết
-    if any(k in query for k in ['startup', 'startup ba', 'cuộc thi khởi nghiệp', 'ba 2024']):
-        return redirect('cuocthi1')
-    elif any(k in query for k in ['việc làm', 'hội chợ việc làm', 'cầu nối nhân lực','hội chợ']):
-        return redirect('cuocthi2')
-    elif any(k in query for k in ['fintech', 'tài chính', 'hội thảo fintech']):
-        return redirect('cuocthi3')
+    data = [
+        {
+            'title': 'Chung kết Startup BA 2024: Sáng tạo và Bùng nổ',
+            'content': 'cuộc thi startup sinh viên khởi nghiệp fintech ngân hàng sáng tạo',
+            'url': '/cuocthi1/'
+        },
+        {
+            'title': 'Hội chợ việc làm – Cầu nối nhân lực 2025',
+            'content': 'việc làm tuyển dụng sinh viên hội chợ ngân hàng doanh nghiệp',
+            'url': '/cuocthi2/'
+        },
+        {
+            'title': 'Tọa đàm Fintech: Nắm bắt để thành công bền vững',
+            'content': 'fintech hội thảo trực tuyến công nghệ tài chính tương lai',
+            'url': '/cuocthi3/'
+        },
+        {
+            'title': 'CHÀO MỪNG NGÀY KHOA HỌC VÀ CÔNG NGHỆ VIỆT NAM 18/5/2025',
+            'content': 'ngày khoa học công nghệ việt nam học viện ngân hàng',
+            'url': '/tintuc1/'
+        },
+        {
+            'title': 'Khóa luận tốt nghiệp học kỳ II năm học 2024-2025',
+            'content': 'nộp khóa luận tốt nghiệp khoa tài chính năm học',
+            'url': '/tintuc2/'
+        },
+        {
+            'title': 'PTIT đẩy mạnh đào tạo Fintech trong kỷ nguyên số',
+            'content': 'ptit fintech công nghệ đào tạo sinh viên chuyển đổi số',
+            'url': '/tintuc3/'
+        },
+    ]
 
-    if any(k in query for k in ['ngày khoa học', '18/5', 'công nghệ việt nam']):
-        return redirect('tintuc1')
-    elif any(k in query for k in ['khóa luận', 'tốt nghiệp', 'nộp khóa luận']):
-        return redirect('tintuc2')
-    elif any(k in query for k in ['ptit', 'đào tạo fintech', 'điểm chuẩn fintech']):
-        return redirect('tintuc3')
-    
+    for post in data:
+        if query in post['title'].lower() or query in post['content'].lower():
+            return redirect(post['url'])
 
-    # Các từ khóa chuyển hướng trang chung
     mapping = {
         'giảng viên': 'giangvien',
         'giang vien': 'giangvien',
@@ -72,6 +92,9 @@ def search(request):
     for keyword, view_name in mapping.items():
         if keyword in query:
             return redirect(view_name)
+
+    return render(request, 'fintech/search.html', {'ket_qua': [], 'query': query})
+    
 def dky(request):
     return render(request, 'fintech/dky.html')
 
