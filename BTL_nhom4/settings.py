@@ -17,7 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fintech',
-    'tinymce',
 ]
 
 MIDDLEWARE = [
