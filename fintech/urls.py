@@ -17,6 +17,7 @@ urlpatterns = [
     path('cuocthi2/', views.cuocthi2, name='cuocthi2'),
     path('cuocthi3/', views.cuocthi3, name='cuocthi3'),
     path('search/', views.search, name='search'),
+    path('dky/', views.dky, name='dky'),  # Trang đăng ký
     path('thanhcong/', views.thanhcong, name='thanhcong'),
     path('submit/', views.submit, name='submit'),  # Xử lý form
 ]

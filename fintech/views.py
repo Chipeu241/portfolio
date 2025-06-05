@@ -86,3 +86,5 @@ def submit(request):
 
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
+def dky(request):
+    return render(request, 'fintech/dky.html')
