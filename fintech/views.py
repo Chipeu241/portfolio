@@ -2,6 +2,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Danhmuc, Comment
 from .forms import CommentForm
+from .forms import TaiKhoanForm
 # Create your views here.
 def index(request):
     return render(request, 'fintech/index.html')
@@ -93,10 +94,18 @@ def submit(request):
         return redirect('thanhcong')  # Chuyển hướng tới trang thành công
     return redirect('dky')
 
+def dky(request):
+    if request.method == 'POST':
+        form = TaiKhoanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thanhcong')  # cần tạo thêm trang cảm ơn
+    else:
+        form = TaiKhoanForm()
+    return render(request, 'fintech/dky.html', {'form': form})
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
-def dky(request):
-    return render(request, 'fintech/dky.html')
+
 def tintuc(request):
     danhmucs = Danhmuc.objects.filter(loai='tintuc')
     posts = Post.objects.filter(status='published', danhmuc__loai='tintuc')
