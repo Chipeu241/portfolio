@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import taiKhoan, Post, Danhmuc
 # Register your models here.
 
-admin.register(taiKhoan)
+admin.site.register(taiKhoan)
 class TaiKhoanAdmin(admin.ModelAdmin):
     list_display = ['tenTaiKhoan', 'hoTen', 'email', 'soDienThoai', 'create_at']
     search_fields = ['tenTaiKhoan', 'email', 'soDienThoai']
