@@ -19,5 +19,5 @@ urlpatterns = [
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'), # Xử lý form
     path('profile/', views.profile, name='profile'),
-    #path('admin/baocao/', admin_views.baocao_view, name='admin_baocao'),
+    path('admin/baocao/', views.baocao_view, name='admin_baocao'),
 ]

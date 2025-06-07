@@ -8,6 +8,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.timezone import now, timedelta
+from django.db.models.functions import TruncDay
+from django.db.models import Count
 # Create your views here.
 def index(request):
     return render(request, 'fintech/index.html')
@@ -174,4 +178,26 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'fintech/profile.html', {'user': request.user})
+@staff_member_required
+def baocao_view(request):
+    total_posts = Post.objects.count()
+    total_comments = Comment.objects.count()
+    total_users = taiKhoan.objects.count()
+    total_views = Post.objects.aggregate(total=Count('view_count'))['total'] or 0
 
+    today = now().date()
+    posts_by_day = (
+        Post.objects.filter(create_at__gte=today - timedelta(days=7))
+        .annotate(day=TruncDay('create_at'))
+        .values('day')
+        .annotate(count=Count('id'))
+        .order_by('day')
+    )
+
+    return render(request, 'baocao.html', {
+        'total_posts': total_posts,
+        'total_comments': total_comments,
+        'total_users': total_users,
+        'total_views': total_views,
+        'posts_by_day': posts_by_day,
+    })
