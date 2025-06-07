@@ -1,14 +1,18 @@
-# fintech/admin_views.py
 from django.shortcuts import render
-from django.contrib.admin.views.decorators import staff_member_required
+from .models import Post, Comment, Danhmuc
+from django.db.models import Count
+from datetime import datetime, timedelta
 
-@staff_member_required
-def baocao_view(request):
-    # Dữ liệu báo cáo giả lập
+def admin_dashboard(request):
+    total_posts = Post.objects.count()
+    total_comments = Comment.objects.count()
+    top_posts = Post.objects.order_by('-views')[:5]
+    post_view_data = Post.objects.values('title', 'views')
+
     context = {
-        'views_count': 1024,
-        'post_views': 830,
-        'comments_count': 154,
-        'registrations': 42,
+        'total_posts': total_posts,
+        'total_comments': total_comments,
+        'top_posts': top_posts,
+        'post_view_data': list(post_view_data),
     }
-    return render(request, 'admin/baocao.html', context)
+    return render(request, 'fintech/dashboard.html', context)

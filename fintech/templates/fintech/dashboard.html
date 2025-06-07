@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Thống kê website</h1>
+
+<div>
+  <p><strong>Tổng số bài viết:</strong> {{ total_posts }}</p>
+  <p><strong>Tổng số bình luận:</strong> {{ total_comments }}</p>
+</div>
+
+<canvas id="viewChart" width="400" height="200"></canvas>
+
+<script src="{% static 'fintech/assets/js/chart.min.js' %}"></script>
+<script>
+  const ctx = document.getElementById('viewChart').getContext('2d');
+  const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: {{ post_view_data|map(attribute='title')|safe }},
+          datasets: [{
+              label: 'Lượt xem',
+              data: {{ post_view_data|map(attribute='views')|safe }},
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true
+      }
+  });
+</script>
+{% endblock %}

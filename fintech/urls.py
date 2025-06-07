@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import admin_views
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
@@ -19,5 +20,5 @@ urlpatterns = [
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'), # Xử lý form
     path('profile/', views.profile, name='profile'),
-    path('admin/baocao/', views.baocao_view, name='admin_baocao'),
+    path('dashboard/', admin_views.admin_dashboard, name='admin-dashboard'),
 ]
