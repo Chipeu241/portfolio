@@ -1,7 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Danhmuc, Comment
-from .forms import CommentForm
+from .forms import CommentForm, CreateUserForm
 import json 
 from .forms import CreateUserForm
 from django.contrib.auth.forms import UserCreationForm 
