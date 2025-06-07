@@ -16,7 +16,7 @@ class Danhmuc(models.Model):
     )
     ten=models.CharField(unique=True, max_length=100)
     ordering=models.IntegerField(default=0)
-    loai = models.CharField(max_length=20,choices=(('tintuc', 'Tin tức'), ('cuocthi', 'Cuộc thi')), default='tintuc')
+    loai = models.CharField(max_length=20,choices=(('noibo', 'Tin tức nội bộ'), ('quocte', 'Tin tức quốc tế')), default='noibo')
     layout=models.CharField(max_length=10,choices=LAYOUT_CHOICE)
     def __str__(self):
         return self.ten
