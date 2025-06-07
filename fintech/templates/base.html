@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Fintech Admin{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'fintech/assets/css/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
