@@ -1,31 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
-<h1>Thống kê website</h1>
 
-<div>
-  <p><strong>Tổng số bài viết:</strong> {{ total_posts }}</p>
-  <p><strong>Tổng số bình luận:</strong> {{ total_comments }}</p>
+{% block title %}Thống kê Website{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📊 Thống kê hoạt động</h2>
+
+<div class="row mb-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm p-3">
+      <h5 class="text-primary">Tổng bài viết</h5>
+      <p class="display-6 fw-bold">{{ total_posts }}</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm p-3">
+      <h5 class="text-success">Tổng bình luận</h5>
+      <p class="display-6 fw-bold">{{ total_comments }}</p>
+    </div>
+  </div>
 </div>
 
-<canvas id="viewChart" width="400" height="200"></canvas>
+<div class="card shadow-sm p-4">
+  <h5 class="mb-3">Top bài viết theo lượt xem</h5>
+  <canvas id="viewChart" height="120"></canvas>
+</div>
 
 <script src="{% static 'fintech/assets/js/chart.min.js' %}"></script>
 <script>
   const ctx = document.getElementById('viewChart').getContext('2d');
   const chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: {{ titles|safe }},
-          datasets: [{
-              label: 'Lượt xem',
-              data: {{ views|safe }}
-              borderWidth: 1
-          }]
-      },
-      options: {
-          responsive: true
+    type: 'bar',
+    data: {
+      labels: {{ titles|safe }},
+      datasets: [{
+        label: 'Lượt xem',
+        data: {{ views|safe }},
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { precision: 0 }
+        }
       }
+    }
   });
 </script>
 {% endblock %}
