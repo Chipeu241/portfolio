@@ -42,24 +42,24 @@ https://templatemo.com/tm-561-purple-buzz
               <div class="flex-fill mx-xl-5 mb-2">
                   <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
                       <li class="nav-item">
-                          <a class="nav-link btn-outline-primary rounded-pill px-3 " href="index.html">Trang chủ</a>
+                          <a class="nav-link btn-outline-primary rounded-pill px-3 " href="{% url 'index' %}">Trang chủ</a>
                       </li>
                       <li class="nav-item dropdown">
-                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="about.html" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
+                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'about' %}" id="gioithieuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Giới thiệu</a>
                           <ul class="dropdown-menu" aria-labelledby="gioithieuDropdown">
                               <li><a class="dropdown-item" href="{% url 'about' %}">Giới thiệu chung</a></li>
                               <li><a class="dropdown-item" href="{% url 'giangvien' %}">Đội ngũ giảng viên</a></li>
                           </ul>
                       </li>
                       <li class="nav-item dropdown">
-                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="work.html" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'noibo' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
                           <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
-                              <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
-                              <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                            <li><a class="dropdown-item" href="{% url 'noibo' %}">Tin tức nội bộ</a></li>
+                            <li><a class="dropdown-item" href="{% url 'quocte' %}">Tin tức quốc tế</a></li>
                           </ul>
                       </li>
                       <li class="nav-item dropdown">
-                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="admission.html" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
+                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'dh' %}" id="tuyensinhDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tuyển sinh</a>
                           <ul class="dropdown-menu" aria-labelledby="tuyensinhDropdown">
                               <li><a class="dropdown-item" href="{% url 'dh' %}">Đại học</a></li>
                               <li><a class="dropdown-item" href="{% url 'sdh' %}">Sau đại học</a></li>
@@ -67,7 +67,7 @@ https://templatemo.com/tm-561-purple-buzz
                           </ul>
                       </li>
                       <li class="nav-item dropdown">
-                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="contact.html" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
+                          <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
                           <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
                               <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
                               <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>

@@ -54,10 +54,10 @@ https://templatemo.com/tm-561-purple-buzz
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'noibo' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
                             <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
-                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
-                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'noibo' %}">Tin tức nội bộ</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quocte' %}">Tin tức quốc tế</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -124,8 +124,8 @@ https://templatemo.com/tm-561-purple-buzz
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> Đăng kí tài khoản  </p>
-                <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4"> Bạn cần có tài khoản để đăng kí tuyển sinh  </p>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> Đăng ký tài khoản  </p>
+                <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4"> Bạn cần có tài khoản để đăng ký tuyển sinh  </p>
 
 
                 <form class="mx-1 mx-md-4" method = 'POST' action =''>
@@ -184,7 +184,7 @@ https://templatemo.com/tm-561-purple-buzz
                   </div>
 
   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-    <button type="submit" class="btn btn-primary btn-lg">Đăng kí</button>
+    <button type="submit" class="btn btn-primary btn-lg">Đăng ký</button>
   </div>
 
  <p class="text-center">Bạn đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập</a></p>
@@ -251,7 +251,7 @@ https://templatemo.com/tm-561-purple-buzz
                                 <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
                             </li>
                             <li class="pb-2">
-                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'noibo' %}">Tin tức</a>
                             </li>
                             <li class="pb-2">
                                 <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>

@@ -54,10 +54,10 @@ https://templatemo.com/tm-561-purple-buzz
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'tintuc' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'noibo' %}" id="tintucDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
                             <ul class="dropdown-menu" aria-labelledby="tintucDropdown">
-                                <li><a class="dropdown-item" href="{% url 'tintuc' %}">Tin tức ngành</a></li>
-                                <li><a class="dropdown-item" href="{% url 'cuocthi' %}">Cuộc thi/Sự kiện/Hội thảo</a></li>
+                                <li><a class="dropdown-item" href="{% url 'noibo' %}">Tin tức nội bộ</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quocte' %}">Tin tức quốc tế</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -118,7 +118,7 @@ https://templatemo.com/tm-561-purple-buzz
 <section style="background-color: #e9e5eb; padding-top: 60px; padding-bottom: 60px;">
   <div class="container">
     <h1 style="font-size: 48px; text-align: center; margin-bottom: 40px; color: #6f42c1; font-weight: bold;">
-      Hồ sơ tài khoản đăng kí
+      Hồ sơ tài khoản đăng ký
     </h1>
 
     <div class="row d-flex justify-content-center">
@@ -128,7 +128,7 @@ https://templatemo.com/tm-561-purple-buzz
           <div class="card-body text-center">
             <img src="https://1nedrop.com/wp-content/uploads/2024/10/avatar-mac-dinh-133dZoUR.jpg" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">Tên người đăng kí: {{ user.last_name }}{{ user.first_name }}</h5>
+            <h5 class="my-3">Tên người đăng ký: {{ user.last_name }}{{ user.first_name }}</h5>
             <a class="btn btn-primary btn-sm text-white" href="{% url 'logout' %}">Đăng xuất</a> 
           </div>
         </div>
@@ -226,7 +226,7 @@ https://templatemo.com/tm-561-purple-buzz
                                 <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
                             </li>
                             <li class="pb-2">
-                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'tintuc' %}">Tin tức</a>
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'noibo' %}">Tin tức</a>
                             </li>
                             <li class="pb-2">
                                 <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
