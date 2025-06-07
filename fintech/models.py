@@ -34,7 +34,7 @@ class Post(models.Model):
     content=RichTextField(default='Nội dung đang cập nhật')
     publish_date=models.DateTimeField()
     image=models.ImageField(upload_to='uploads/', null=True, blank=True)
-
+    views = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
     
