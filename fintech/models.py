@@ -48,7 +48,7 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment by {self.name} on {self.post}"
 #change register form
-class CreateUserForm(UserCreationForm):
+    class CreateUserForm(UserCreationForm):
       class Meta:
         model = User  
-        fields = ['username', 'email', 'first_name','last_name','password1','password2' ]       
+        fields = ['username', 'email', 'first_name','last_name','password1','password2']       

@@ -74,10 +74,11 @@ def search(request):
         'chương trình đào tạo': 'ctdt',
         'đào tạo': 'ctdt',
         'giới thiệu': 'about',
-        'tin tức': 'tintuc',
-        'cuộc thi': 'cuocthi',
-        'sự kiện': 'cuocthi',
-        'hội thảo': 'cuocthi',
+        'nội bộ': 'noibo',
+        'quốc tế': 'quocte',
+        'sự kiện': 'noibo',
+        'hội thảo': 'noibo',
+        'cuộc thi': 'noibo',
         'trang chủ': 'index',
     }
 
@@ -103,14 +104,14 @@ def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
 def dky(request):
     return render(request, 'fintech/dky.html')
-def tintuc(request):
-    danhmucs = Danhmuc.objects.filter(loai='tintuc')
-    posts = Post.objects.filter(status='published', danhmuc__loai='tintuc')
-    return render(request, 'fintech/tintuc.html', {'posts': posts, 'danhmucs': danhmucs})
-def cuocthi(request):
-    danhmucs = Danhmuc.objects.filter(loai='cuocthi')
-    posts = Post.objects.filter(status='published', danhmuc__loai='cuocthi')
-    return render(request, 'fintech/cuocthi.html', {'posts': posts, 'danhmucs': danhmucs})
+def noibo(request):
+    danhmucs = Danhmuc.objects.filter(loai='noibo')
+    posts = Post.objects.filter(status='published', danhmuc__loai='noibo')
+    return render(request, 'fintech/noibo.html', {'posts': posts, 'danhmucs': danhmucs})
+def quocte(request):
+    danhmucs = Danhmuc.objects.filter(loai='quocte')
+    posts = Post.objects.filter(status='published', danhmuc__loai='quocte')
+    return render(request, 'fintech/quocte.html', {'posts': posts, 'danhmucs': danhmucs})
 def detail(request, ordering):
     post = get_object_or_404(Post, ordering=ordering)
     comments = Comment.objects.filter(post=post).order_by('-created_at')
