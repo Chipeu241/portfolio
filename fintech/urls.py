@@ -15,4 +15,8 @@ urlpatterns = [
     path('dky/', views.dky, name='dky'),  # Trang đăng ký
     path('thanhcong/', views.thanhcong, name='thanhcong'),
     path('submit/', views.submit, name='submit'),  # Xử lý form
+    path('register/', views.register, name='register'), 
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutUser, name='logout'), # Xử lý form
+    path('profile/', views.profile, name='profile'),
 ]

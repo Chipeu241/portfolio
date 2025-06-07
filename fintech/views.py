@@ -2,7 +2,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Danhmuc, Comment
 from .forms import CommentForm
-from .forms import TaiKhoanForm
+import json 
+from .forms import CreateUserForm
+from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 def index(request):
     return render(request, 'fintech/index.html')
@@ -94,18 +99,10 @@ def submit(request):
         return redirect('thanhcong')  # Chuyển hướng tới trang thành công
     return redirect('dky')
 
-def dky(request):
-    if request.method == 'POST':
-        form = TaiKhoanForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('thanhcong')  # cần tạo thêm trang cảm ơn
-    else:
-        form = TaiKhoanForm()
-    return render(request, 'fintech/dky.html', {'form': form})
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
-
+def dky(request):
+    return render(request, 'fintech/dky.html')
 def tintuc(request):
     danhmucs = Danhmuc.objects.filter(loai='tintuc')
     posts = Post.objects.filter(status='published', danhmuc__loai='tintuc')
@@ -133,3 +130,43 @@ def detail(request, ordering):
         'comments': comments,
         'form': form,
     })
+def register(request):
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # đăng nhập ngay sau khi đăng ký
+            return redirect('profile')  # chuyển sang profile
+    else:
+        form = CreateUserForm()
+    
+    context = {'form': form}
+    return render(request, 'fintech/register.html', context)
+
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('dky')  # nếu đã đăng nhập thì chuyển hướng
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dky')  # chuyển đến dky nếu login thành công
+        else:
+            messages.info(request, 'user or password not correct!')
+
+    context = {}
+    return render(request, 'fintech/login.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def profile(request):
+    return render(request, 'fintech/profile.html', {'user': request.user})
+
