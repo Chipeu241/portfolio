@@ -9,6 +9,7 @@ def admin_dashboard(request):
     top_posts = Post.objects.order_by('-views')[:5]
     post_view_data = Post.objects.values('title', 'views')
 
+    # ✅ Tách dữ liệu trước khi render template
     titles = [item['title'] for item in post_view_data]
     views = [item['views'] for item in post_view_data]
 
@@ -16,7 +17,8 @@ def admin_dashboard(request):
         'total_posts': total_posts,
         'total_comments': total_comments,
         'top_posts': top_posts,
-        'titles': titles,
-        'views': views,
+        'titles': titles,   # ✅ list tiêu đề
+        'views': views      # ✅ list view
     }
+
     return render(request, 'fintech/dashboard.html', context)

@@ -16,10 +16,10 @@
   const chart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: {{ post_view_data|map(attribute='title')|safe }},
+        labels: {{ titles|safe }},
           datasets: [{
               label: 'Lượt xem',
-              data: {{ post_view_data|map(attribute='views')|safe }},
+              data: {{ views|safe }}
               borderWidth: 1
           }]
       },
