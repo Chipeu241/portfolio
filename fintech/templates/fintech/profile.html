@@ -115,66 +115,65 @@ https://templatemo.com/tm-561-purple-buzz
       </script>      
     <!-- Close Header -->
      
-<section style="background-color: #e9e5eb; padding-top: 60px; padding-bottom: 60px;">
-  <div class="container">
-    <h1 style="font-size: 48px; text-align: center; margin-bottom: 40px; color: #6f42c1; font-weight: bold;">
-      Hồ sơ tài khoản đăng ký
-    </h1>
-
-    <div class="row d-flex justify-content-center">
-      <!-- Cột trái: Avatar -->
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src="https://1nedrop.com/wp-content/uploads/2024/10/avatar-mac-dinh-133dZoUR.jpg" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">Tên người đăng ký: {{ user.last_name }}{{ user.first_name }}</h5>
-            <a class="btn btn-primary btn-sm text-white" href="{% url 'logout' %}">Đăng xuất</a> 
+    <section style="background-color: #e9e5eb; padding-top: 60px; padding-bottom: 60px;">
+        <div class="container">
+          <h1 style="font-size: 48px; text-align: center; margin-bottom: 40px; color: #6f42c1; font-weight: bold;">
+            Hồ sơ tài khoản đăng kí
+          </h1>
+      
+          <div class="row d-flex justify-content-center">
+            <!-- Cột trái: Avatar -->
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="https://1nedrop.com/wp-content/uploads/2024/10/avatar-mac-dinh-133dZoUR.jpg" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3">Tên người đăng kí: {{ user.last_name }}{{ user.first_name }}</h5>
+                  <a class="btn btn-primary btn-sm text-white" href="{% url 'logout' %}">Đăng xuất</a> 
+                </div>
+              </div>
+            </div>
+      
+            <!-- Cột phải: Thông tin người dùng -->
+            <div class="col-lg-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Họ:</p></div>
+                    <div class="col-sm-8"><p class="text-muted mb-0">{{ user.last_name }}</p></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Tên:</p></div>
+                    <div class="col-sm-8"><p class="text-muted mb-0">{{ user.first_name }}</p></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Email:</p></div>
+                    <div class="col-sm-8"><p class="text-muted mb-0">{{ user.email }}</p></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Tên đăng nhập:</p></div>
+                    <div class="col-sm-8"><p class="text-muted mb-0">{{ user.username }}</p></div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Số điện thoại:</p></div>
+                    <div class="col-sm-8"><p class="text-muted mb-0">{{ user.phone }}</p></div>
+                  </div>
+                  <hr>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Cột phải: Thông tin người dùng -->
-      <div class="col-lg-6">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Họ:</p></div>
-              <div class="col-sm-8"><p class="text-muted mb-0">{{ user.last_name }}</p></div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Tên:</p></div>
-              <div class="col-sm-8"><p class="text-muted mb-0">{{ user.first_name }}</p></div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Email:</p></div>
-              <div class="col-sm-8"><p class="text-muted mb-0">{{ user.email }}</p></div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Tên đăng nhập:</p></div>
-              <div class="col-sm-8"><p class="text-muted mb-0">{{ user.username }}</p></div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4"><p class="mb-0" style="font-weight: bold;">Số điện thoại:</p></div>
-              <div class="col-sm-8"><p class="text-muted mb-0">{{ user.phone }}</p></div>
-            </div>
-            <hr>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
-
-
+<!-- Start Footer -->
     <footer class="bg-secondary pt-4">
         <div class="container">
             <div class="row py-4">

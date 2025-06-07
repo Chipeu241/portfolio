@@ -136,13 +136,17 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # đăng nhập ngay sau khi đăng ký
-            return redirect('profile')  # chuyển sang profile
+            login(request, user)
+            return redirect('profile')
+        else:
+            # CHÈN DÒNG NÀY
+            messages.error(request, 'Đăng ký thất bại. Vui lòng kiểm tra lại thông tin.')
     else:
         form = CreateUserForm()
-    
+
     context = {'form': form}
     return render(request, 'fintech/register.html', context)
+
 
 def loginPage(request):
     if request.user.is_authenticated:
