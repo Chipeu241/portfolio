@@ -14,3 +14,12 @@ class DanhmucAdmin(admin.ModelAdmin):
     list_filter = ('loai',)
 
 admin.site.register(Danhmuc, DanhmucAdmin)
+class TaiKhoanAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
+    list_filter = ('is_active',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(is_staff=False)  # chỉ user thường
+
+admin.site.register(taiKhoan, TaiKhoanAdmin)

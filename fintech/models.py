@@ -1,19 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import User 
+from django.contrib.auth.forms import UserCreationForm 
 # Create your models here.
-class taiKhoan(models.Model):
-    tenTaiKhoan = models.CharField(max_length=50)
-    matKhau = models.CharField(max_length=50)
-    hoTen = models.CharField(max_length=50)
-    email = models.EmailField()
-    soDienThoai = models.CharField(max_length=15)
-    diaChi = models.TextField()
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
-    #trangThai = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.tenTaiKhoan
+class taiKhoan(User):
+    class Meta:
+        proxy = True
+        verbose_name = 'Tài khoản người dùng'
+        verbose_name_plural = 'Tài khoản người dùng'
 
  
 class Danhmuc(models.Model):
@@ -54,4 +47,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.name} on {self.post}"
-        
+#change register form
+    class CreateUserForm(UserCreationForm):
+      class Meta:
+        model = User  
+        fields = ['username', 'email', 'first_name','last_name','password1','password2' ]       
