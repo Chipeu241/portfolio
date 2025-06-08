@@ -174,24 +174,23 @@ https://templatemo.com/tm-561-purple-buzz
 
 
   <!-- Danh sách bình luận -->
-  <div id="comment-section" class="mt-5 mx-auto" style="max-width: 960px;">
-    <h5 class="fw-bold mb-4">Bình luận</h5>
-
+  <div class="mx-auto" style="max-width: 720px;">  <!-- 👈 thêm khung gọn -->
+    <h5 class="mt-4">Bình luận</h5>
+  
     {% for comment in comments %}
-      <div class="d-flex align-items-start mb-4 p-3 bg-light rounded shadow-sm">
-        <!-- Avatar giả định -->
-        <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" alt="avatar" width="50" height="50" class="rounded-circle me-3">
-
-        <div>
-          <p class="mb-1 fw-bold">{{ comment.name }} <small class="text-muted">({{ comment.email }})</small></p>
-          <p class="mb-0">{{ comment.content }}</p>
+      <div class="p-3 mb-3 rounded shadow-sm bg-light">
+        <div class="d-flex align-items-center mb-2">
+          <img src="{% static 'fintech/assets/img/avatar.png' %}" width="24" height="24" class="me-2">
+          <strong>{{ comment.user.username }}</strong>
+          <small class="text-muted ms-2">({{ comment.created_at|date:"d/m/Y H:i" }})</small>
         </div>
+        <p class="mb-0">{{ comment.content }}</p>
       </div>
     {% empty %}
       <p>Chưa có bình luận nào.</p>
     {% endfor %}
   </div>
-</div>
+  
 
 <!-- End Blog Cover -->
   <!-- Start Footer -->
