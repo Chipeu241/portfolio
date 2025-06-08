@@ -95,13 +95,17 @@ def search(request):
 
 @csrf_exempt
 def submit(request):
-    if request.method == 'POST':
-        # Bạn có thể lưu dữ liệu ở đây nếu muốn
-        # Ví dụ:
-        # hoten = request.POST['hoten']
-        return redirect('thanhcong')  # Chuyển hướng tới trang thành công
-    return redirect('dky')
-
+        if request.method == 'POST':
+        form = DangKyTuyenSinhForm(request.POST)
+        if form.is_valid():
+            dang_ky = form.save(commit=False)
+            dang_ky.user = request.user  # Gán người dùng hiện tại
+            dang_ky.save()  # Lưu vào DB
+            return redirect('thanhcong')  # Trang sau khi đăng ký thành công
+    else:
+        form = DangKyTuyenSinhForm()
+    return render(request, 'dky.html', {'form': form})
+    
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
 def noibo(request):
