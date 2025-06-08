@@ -7,6 +7,7 @@ from .forms import CreateUserForm
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
+from .forms import DangKyTuyenSinhForm
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.timezone import now, timedelta
@@ -181,6 +182,17 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'fintech/profile.html', {'user': request.user})
+def dang_ky_tuyen_sinh(request):
+    if request.method == 'POST':
+        form = DangKyTuyenSinhForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return render(request, 'thanhcong.html')
+    else:
+        form = DangKyTuyenSinhForm()
+    return render(request, 'dky.html', {'form': form})
 @staff_member_required
 def baocao_view(request):
     total_posts = Post.objects.count()

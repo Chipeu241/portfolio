@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Post, Comment, Danhmuc
 from django.db.models import Count
 from datetime import datetime, timedelta
-
 def admin_dashboard(request):
     total_posts = Post.objects.count()
     total_comments = Comment.objects.count()
@@ -20,5 +19,4 @@ def admin_dashboard(request):
         'titles': titles,   # ✅ list tiêu đề
         'views': views      # ✅ list view
     }
-
     return render(request, 'fintech/dashboard.html', context)

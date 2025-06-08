@@ -47,7 +47,20 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.user.username}: {self.content[:30]}"
 #change register form
-    class CreateUserForm(UserCreationForm):
+class CreateUserForm(UserCreationForm):
       class Meta:
         model = User  
-        fields = ['username', 'email', 'first_name','last_name','password1','password2']      
+        fields = ['username', 'email', 'first_name','last_name','password1','password2']
+
+class DangKyTuyenSinh(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Người đăng ký")
+    ho_ten = models.CharField("Họ và tên", max_length=100)
+    ngay_sinh = models.DateField("Ngày sinh")
+    gioi_tinh = models.CharField("Giới tính", max_length=10, choices=(('Nam', 'Nam'), ('Nữ', 'Nữ')))
+    so_dien_thoai = models.CharField("Số điện thoại", max_length=15)
+    email = models.EmailField("Email")
+    dia_chi = models.TextField("Địa chỉ")
+    ngay_dang_ky = models.DateTimeField("Thời gian đăng ký", auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.ho_ten} - Công nghệ tài chính"
