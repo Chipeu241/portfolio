@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+{{% load static %}}
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -43,7 +44,7 @@
     <h2>🎉 Đăng ký thành công!</h2>
     <p>Cảm ơn bạn đã hoàn tất đăng ký xét tuyển vào Học viện Ngân hàng.</p>
     <p>Chúng tôi sẽ liên hệ lại nếu cần xác minh hồ sơ.</p>
-    <a href="/index/">Quay lại trang chủ</a>
+    <a href="{% url 'index' %}" class="btn btn-primary">Trở về trang chủ</a>
   </div>
 </body>
 </html>
