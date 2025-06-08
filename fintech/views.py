@@ -166,7 +166,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dky')  # chuyển đến dky nếu login thành công
+            return redirect('profile')  # chuyển đến dky nếu login thành công
         else:
             messages.info(request, 'user or password not correct!')
 
