@@ -157,7 +157,7 @@ def register(request):
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('dky')  # nếu đã đăng nhập thì chuyển hướng
+        return redirect('profile')  # nếu đã đăng nhập thì chuyển hướng
 
     if request.method == "POST":
         username = request.POST.get('username')
