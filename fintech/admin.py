@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import taiKhoan, Post, Danhmuc
+from .models import taiKhoan, Post, Danhmuc, DangKyTuyenSinh
 from django.urls import reverse
 from django.utils.html import format_html
 from django.shortcuts import redirect
@@ -56,3 +56,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('created_at',)
 
 admin.site.register(Comment, CommentAdmin)
+
+class DangKyTuyenSinhAdmin(admin.ModelAdmin):
+    list_display = ('ho_ten', 'ngay_sinh', 'gioi_tinh', 'so_dien_thoai', 'email', 'ngay_dang_ky', 'user')
+    search_fields = ('ho_ten', 'email', 'so_dien_thoai')
+    list_filter = ('gioi_tinh', 'ngay_dang_ky')
+
+admin.site.register(DangKyTuyenSinh, DangKyTuyenSinhAdmin)
