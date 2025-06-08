@@ -184,10 +184,10 @@ def dky(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            return render(request, 'thanhcong.html')
+            return render(request, 'fintech/thanhcong.html')
     else:
         form = DangKyTuyenSinhForm()
-    return render(request, 'dky.html', {'form': form})
+    return render(request, 'fintech/dky.html', {'form': form})
 @staff_member_required
 def baocao_view(request):
     total_posts = Post.objects.count()
