@@ -157,40 +157,41 @@ https://templatemo.com/tm-561-purple-buzz
   </div>
 </div>
 <!--comment-->
-<div class="comment-area px-5" style="padding-left: 80px; padding-right: 80px;">
-
-  <!-- Form bình luận -->
-  {% if user.is_authenticated %}
-  <form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-      {{ form.content|add_class:"form-control shadow-sm" }}
-    </div>
-    <button type="submit" class="btn btn-primary">Gửi bình luận</button>
-  </form>
-{% else %}
-  <p>🔒 Bạn cần <a href="{% url 'login' %}">đăng nhập</a> để bình luận.</p>
-{% endif %}
+<div class="mx-auto" style="max-width: 720px;">
+    {% if user.is_authenticated %}
+      <form method="POST" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+          {{ form.content|add_class:"form-control shadow-sm" }}
+        </div>
+        <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+      </form>
+    {% else %}
+      <p class="text-muted">🔒 Bạn cần <a href="{% url 'login' %}">đăng nhập</a> để bình luận.</p>
+    {% endif %}
+  </div>
+  
 
 
   <!-- Danh sách bình luận -->
-  <div class="mx-auto" style="max-width: 720px;">  <!-- 👈 thêm khung gọn -->
+  <div class="mx-auto" style="max-width: 720px;">
     <h5 class="mt-4">Bình luận</h5>
   
     {% for comment in comments %}
       <div class="p-3 mb-3 rounded shadow-sm bg-light">
         <div class="d-flex align-items-center mb-2">
-          <img src="{% static 'fintech/assets/img/avatar.png' %}" width="24" height="24" class="me-2">
-          <strong>{{ comment.user.username }}</strong>
-          <small class="text-muted ms-2">({{ comment.created_at|date:"d/m/Y H:i" }})</small>
+          <img src="{% static 'fintech/assets/img/avatar.png' %}" width="32" height="32" class="rounded-circle me-2 border">
+          <div>
+            <strong>{{ comment.user.username }}</strong>
+            <small class="text-muted ms-2">({{ comment.created_at|date:"d/m/Y H:i" }})</small>
+          </div>
         </div>
-        <p class="mb-0">{{ comment.content }}</p>
+        <p class="mb-0 ps-5">{{ comment.content }}</p>
       </div>
     {% empty %}
       <p>Chưa có bình luận nào.</p>
     {% endfor %}
-  </div>
-  
+  </div>  
 
 <!-- End Blog Cover -->
   <!-- Start Footer -->
