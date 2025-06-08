@@ -2915,7 +2915,7 @@ textarea.form-control-lg {
           appearance: none;
 }
 
-/* line 26, src/assets/scss/forms/_form-select.scss */
+
 .form-select:focus {
   border-color: #a199e1;
   outline: 0;
