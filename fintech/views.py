@@ -93,9 +93,6 @@ def search(request):
 
     return render(request, 'fintech/search.html', {'ket_qua': [], 'query': query})
 
-def dky(request):
-    return render(request, 'fintech/dky.html')
-
 @csrf_exempt
 def submit(request):
     if request.method == 'POST':
@@ -107,8 +104,6 @@ def submit(request):
 
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
-def dky(request):
-    return render(request, 'fintech/dky.html')
 def noibo(request):
     danhmucs = Danhmuc.objects.filter(loai='noibo')
     posts = Post.objects.filter(status='published', danhmuc__loai='noibo')
@@ -182,7 +177,7 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'fintech/profile.html', {'user': request.user})
-def dang_ky_tuyen_sinh(request):
+def dky(request):
     if request.method == 'POST':
         form = DangKyTuyenSinhForm(request.POST)
         if form.is_valid():
