@@ -118,14 +118,17 @@ def quocte(request):
     return render(request, 'fintech/quocte.html', {'posts': posts, 'danhmucs': danhmucs})
 def detail(request, ordering):
     post = get_object_or_404(Post, ordering=ordering)
-    comments = Comment.objects.filter(post=post).order_by('-created_at')
+    comments = post.comments.all().order_by('-created_at')
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login') 
         form = CommentForm(request.POST)
         if form.is_valid():
-            new_cmt = form.save(commit=False)
-            new_cmt.post = post
-            new_cmt.save()
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.user = request.user
+            new_comment.save()
             return redirect('detail', ordering=post.ordering)
     else:
         form = CommentForm()

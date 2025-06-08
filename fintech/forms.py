@@ -5,7 +5,10 @@ from django.contrib.auth.models import User
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['content', 'name', 'email']
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 4}),
+        }
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User  

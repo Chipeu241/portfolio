@@ -39,16 +39,15 @@ class Post(models.Model):
         return self.title
     
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)  # 🔗 Liên kết với tài khoản
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
-        return f"Comment by {self.name} on {self.post}"
+        return f"{self.user.username}: {self.content[:30]}"
 #change register form
     class CreateUserForm(UserCreationForm):
       class Meta:
         model = User  
-        fields = ['username', 'email', 'first_name','last_name','password1','password2']       
+        fields = ['username', 'email', 'first_name','last_name','password1','password2']      

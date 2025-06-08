@@ -48,3 +48,11 @@ class ReportAdmin(admin.ModelAdmin):
     def has_view_permission(self, request, obj=None):
         return True
 
+from .models import Comment
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'user', 'content', 'created_at')
+    search_fields = ('content', 'user__username', 'post__title')
+    list_filter = ('created_at',)
+
+admin.site.register(Comment, CommentAdmin)

@@ -160,34 +160,18 @@ https://templatemo.com/tm-561-purple-buzz
 <div class="comment-area px-5" style="padding-left: 80px; padding-right: 80px;">
 
   <!-- Form bình luận -->
-  <form method="POST" class="row g-3 mb-5 mx-auto" style="max-width: 960px;">
+  {% if user.is_authenticated %}
+  <form method="POST">
     {% csrf_token %}
-
-    <div class="col-12">
-      <label for="id_content" class="form-label fw-bold">Nội dung</label>
-      {{ form.content|add_class:"form-control form-control-lg shadow-sm border-0" }}
-      <style>
-        #id_content {
-          max-height: 200px;
-          resize: vertical;
-        }
-      </style>
+    <div class="mb-3">
+      {{ form.content|add_class:"form-control shadow-sm" }}
     </div>
-
-    <div class="col-md-6">
-      <label for="id_name" class="form-label fw-bold">Họ và tên</label>
-      {{ form.name|add_class:"form-control form-control-lg shadow-sm border-0" }}
-    </div>
-
-    <div class="col-md-6">
-      <label for="id_email" class="form-label fw-bold">Email</label>
-      {{ form.email|add_class:"form-control form-control-lg shadow-sm border-0" }}
-    </div>
-
-    <div class="col-12 text-end">
-      <button type="submit" class="btn btn-secondary px-4 py-2 rounded-pill">💬 Gửi bình luận</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Gửi bình luận</button>
   </form>
+{% else %}
+  <p>🔒 Bạn cần <a href="{% url 'login' %}">đăng nhập</a> để bình luận.</p>
+{% endif %}
+
 
   <!-- Danh sách bình luận -->
   <div id="comment-section" class="mt-5 mx-auto" style="max-width: 960px;">
