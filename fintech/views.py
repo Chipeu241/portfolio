@@ -101,10 +101,9 @@ def submit(request):
             form.save()  # ✅ Phải có dòng này để lưu dữ liệu
             return redirect('thanhcong')
         else:
-            return render(request, 'dky.html', {'form': form})
+            return render(request, 'fintech/dky.html', {'form': form})
     return redirect('dky')
 
-    
 def thanhcong(request):
     return render(request, 'fintech/thanhcong.html')
 def noibo(request):
