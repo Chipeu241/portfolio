@@ -173,156 +173,191 @@ https://templatemo.com/tm-561-purple-buzz
 
 
   <!-- Danh sách bình luận -->
-  <div class="mx-auto" style="max-width: 720px;">
-    <h5 class="mt-4">Bình luận</h5>
+  <main class="container py-5">
+    <div class="mx-auto" style="max-width: 900px; margin-top: 40px;">
+      
+      <h1 class="text-center fw-bold mb-3" style="color: #5e0bb6;">
+        {{ post.title }}
+      </h1>
+      
+      <p class="text-muted mb-4" style="text-align: left;">
+        Ngày đăng: {{ post.publish_date|date:"d/m/Y" }}
+      </p>
   
-    {% for comment in comments %}
-    <div class="p-3 mb-3 rounded shadow-sm bg-white border">
-      <div class="d-flex align-items-center mb-2">
-        <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" width="32" height="32" class="rounded-circle me-2 border">
-        <div>
-          <strong>{{ comment.user.username }}</strong>
-          <small class="text-muted ms-2">({{ comment.created_at|date:"d/m/Y H:i" }})</small>
-        </div>
-      </div>
-      <p class="mb-0 ps-5">{{ comment.content }}</p>
+      {% if post.image and 'img' not in post.content %}
+        <img src="{{ post.image.url }}" class="img-fluid d-block mx-auto mb-4" alt="{{ post.title }}">
+      {% endif %}
   
-      {% if comment.replies.all %}
-        {% for reply in comment.replies.all %}
-          <div class="mt-2 ps-5 border-start border-2">
-            <div class="d-flex align-items-center mb-1 mt-2">
-              <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" width="28" height="28" class="rounded-circle me-2 border">
-              <div>
-                <strong>{{ reply.user.username }}</strong>
-                <small class="text-muted ms-2">({{ reply.created_at|date:"d/m/Y H:i" }})</small>
-              </div>
-            </div>
-            <p class="mb-0 ps-5">{{ reply.content }}</p>
+      <article class="fs-5">
+        {{ post.content|safe }}
+      </article>
+  
+    </div>
+  
+    <div class="mx-auto mt-5" style="max-width: 720px;">
+      {% if user.is_authenticated %}
+        <form method="POST" class="mb-4">
+          {% csrf_token %}
+          <div class="mb-3">
+            {{ form.content|add_class:"form-control shadow-sm" }}
           </div>
-        {% endfor %}
+          <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+        </form>
+      {% else %}
+        <p class="text-muted">🔒 Bạn cần <a href="{% url 'login' %}">đăng nhập</a> để bình luận.</p>
       {% endif %}
     </div>
-  {% empty %}
-    <p>Chưa có bình luận nào.</p>
-  {% endfor %}
-</div>
-
-<!-- End Blog Cover -->
-  <!-- Start Footer -->
+  
+    <div class="mx-auto" style="max-width: 720px;">
+      <h5 class="mt-4">Bình luận</h5>
+  
+      {% for comment in comments %}
+      <div class="p-3 mb-3 rounded shadow-sm bg-white border">
+        <div class="d-flex align-items-center mb-2">
+          <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" width="32" height="32" class="rounded-circle me-2 border">
+          <div>
+            <strong>{{ comment.user.username }}</strong>
+            <small class="text-muted ms-2">({{ comment.created_at|date:"d/m/Y H:i" }})</small>
+          </div>
+        </div>
+        <p class="mb-0 ps-5">{{ comment.content }}</p>
+  
+        {% if comment.replies.all %}
+          {% for reply in comment.replies.all %}
+            <div class="mt-2 ps-5 border-start border-2">
+              <div class="d-flex align-items-center mb-1 mt-2">
+                <img src="{% static 'fintech/assets/img/avatarcmt.jpg' %}" width="28" height="28" class="rounded-circle me-2 border">
+                <div>
+                  <strong>{{ reply.user.username }}</strong>
+                  <small class="text-muted ms-2">({{ reply.created_at|date:"d/m/Y H:i" }})</small>
+                </div>
+              </div>
+              <p class="mb-0 ps-5">{{ reply.content }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% empty %}
+        <p>Chưa có bình luận nào.</p>
+      {% endfor %}
+    </div>
+  </main>
+  
+    <!-- Start Footer -->
     <footer class="bg-secondary pt-4">
-      <div class="container text-center">
-          <div class="row py-4">
+        <div class="container">
+            <div class="row py-4">
 
-              <div class="col-lg-3 col-12 align-left">
-                  <a class="navbar-brand" href="index.html">
-                      <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
-                      <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
-                  </a>
-                  <p class="text-light my-lg-4 my-2">
-                      Khoa Tài chính - Học viện Ngân hàng
-                  </p>
-                  <ul class="list-inline footer-icons light-300">
-                      <li class="list-inline-item m-0">
-                          <a class="text-light" target="_blank" href="http://facebook.com/">
-                              <i class='bx bxl-facebook-square bx-md'></i>
-                          </a>
-                      </li>
-                      <li class="list-inline-item m-0">
-                          <a class="text-light" target="_blank" href="https://www.linkedin.com/">
-                              <i class='bx bxl-linkedin-square bx-md'></i>
-                          </a>
-                      </li>
-                      <li class="list-inline-item m-0">
-                          <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
-                              <i class='bx bxl-whatsapp-square bx-md'></i>
-                          </a>
-                      </li>
-                      <li class="list-inline-item m-0">
-                          <a class="text-light" target="_blank" href="https://www.flickr.com/">
-                              <i class='bx bxl-flickr-square bx-md'></i>
-                          </a>
-                      </li>
-                      <li class="list-inline-item m-0">
-                          <a class="text-light" target="_blank" href="https://www.medium.com/">
-                              <i class='bx bxl-medium-square bx-md' ></i>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
+                <div class="col-lg-3 col-12 align-left">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}" alt="Logo" style="height: 40px; margin-right: 8px;">
+                        <span class="text-light h5">Fintech</span> <span class="text-light h5 semi-bold-600">BAV</span>
+                    </a>
+                    <p class="text-light my-lg-4 my-2">
+                        Khoa Tài chính - Học viện Ngân hàng
+                    </p>
+                    <ul class="list-inline footer-icons light-300">
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="http://facebook.com/">
+                                <i class='bx bxl-facebook-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.linkedin.com/">
+                                <i class='bx bxl-linkedin-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.whatsapp.com/">
+                                <i class='bx bxl-whatsapp-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.flickr.com/">
+                                <i class='bx bxl-flickr-square bx-md'></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item m-0">
+                            <a class="text-light" target="_blank" href="https://www.medium.com/">
+                                <i class='bx bxl-medium-square bx-md' ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-              <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
-                  <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
-                      <ul class="list-unstyled text-light light-300">
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h3 class="h4 pb-lg-3 text-light light-300">Đường dẫn liên kết</h2>
+                        <ul class="list-unstyled text-light light-300">
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'noibo' %}">Tin tức</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                            </li>
+                            <li class="pb-2">
+                                <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                            </li>
+                        </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
+                    <ul class="list-unstyled text-light light-300">
                         <li class="pb-2">
-                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light" href="{% url 'index' %}">Trang chủ</a>
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
                         </li>
                         <li class="pb-2">
-                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'about' %}">Giới thiệu</a>
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
                         </li>
                         <li class="pb-2">
-                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'noibo' %}">Tin tức</a>
+                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
+                    <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
+                    <ul class="list-unstyled text-light light-300">
+                        <li class="pb-2">
+                            <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
                         </li>
                         <li class="pb-2">
-                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i></i><a class="text-decoration-none text-light py-1" href="{% url 'dh' %}">Tuyển sinh</a>
+                            <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
                         </li>
                         <li class="pb-2">
-                            <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="{% url 'ctdt' %}">Đào tạo</a>
+                            <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
                         </li>
-                      </ul>
-              </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-              <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
-                  <h2 class="h4 pb-lg-3 text-light light-300">Đơn vị trực thuộc</h2>
-                  <ul class="list-unstyled text-light light-300">
-                      <li class="pb-2">
-                          <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Khoa - Trường</a>
-                      </li>
-                      <li class="pb-2">
-                          <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Phòng ban - Trung tâm</a>
-                      </li>
-                      <li class="pb-2">
-                          <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">Viện nghiên cứu - NXB</a>
-                      </li>
-                  </ul>
-              </div>
+        <div class="w-100 bg-primary py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-start text-center text-light light-300">
+                            © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
+                            <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="text-lg-end text-center text-light light-300">
+                            Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-              <div class="col-lg-3 col-md-4 my-sm-0 mt-4">
-                  <h2 class="h4 pb-lg-3 text-light light-300">Thông tin liên hệ</h2>
-                  <ul class="list-unstyled text-light light-300">
-                      <li class="pb-2">
-                          <i class='bx-fw bx bx-map bx-xs'></i><a class="text-decoration-none text-light py-1" href="#">12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội</a>
-                      </li>
-                      <li class="pb-2">
-                          <i class='bx-fw bx bx-phone bx-xs'></i><a class="text-decoration-none text-light py-1" href="tel:010-020-0340">0243.852.6413</a>
-                      </li>
-                      <li class="pb-2">
-                          <i class='bx-fw bx bx-mail-send bx-xs'></i><a class="text-decoration-none text-light py-1" href="mailto:info@company.com">khoataichinh@hvnh.edu.vn</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-
-      <div class="w-100 bg-primary py-3">
-          <div class="container">
-              <div class="row pt-2">
-                  <div class="col-lg-6 col-sm-12">
-                      <p class="text-lg-start text-center text-light light-300">
-                          © Copyright 2024 by Bộ môn Công nghệ tài chính - Học viện Ngân hàng
-                          <br>® Học viện Ngân hàng giữ bản quyền nội dung trên website này.
-                      </p>
-                  </div>
-                  <div class="col-lg-6 col-sm-12">
-                      <p class="text-lg-end text-center text-light light-300">
-                          Designed by <a rel="sponsored" class="text-decoration-none text-light" href="https://templatemo.com/" target="_blank"><strong>Team 4</strong></a>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-  </footer>
-  <!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
 
      <!-- Bootstrap -->
      <script src="{% static 'fintech/assets/js/bootstrap.bundle.min.js' %}"></script>
