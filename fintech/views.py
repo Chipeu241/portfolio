@@ -113,7 +113,7 @@ def quocte(request):
     return render(request, 'fintech/quocte.html', {'posts': posts, 'danhmucs': danhmucs})
 def detail(request, ordering):
     post = get_object_or_404(Post, ordering=ordering)
-    comments = post.comments.all().order_by('-created_at')
+    comments = post.comments.filter(parent__isnull=True).order_by('-created_at')
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
