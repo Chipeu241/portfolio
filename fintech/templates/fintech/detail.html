@@ -132,54 +132,13 @@ https://templatemo.com/tm-561-purple-buzz
 
  <!-- Start Our Work -->
 
-<div class="container">
-  <div class="mx-auto" style="max-width: 900px; margin-top: 40px;">
-    
-    <!-- Tiêu đề cách banner 40px -->
-    <h1 class="text-center fw-bold mb-3" style="color: #5e0bb6;">
-      {{ post.title }}
-    </h1>
-    
-    <!-- Ngày đăng lệch trái -->
-    <p class="text-muted mb-4" style="text-align: left;">
-      Ngày đăng: {{ post.publish_date|date:"d/m/Y" }}
-    </p>
-
-    {% if post.image and 'img' not in post.content %}
-      <img src="{{ post.image.url }}" class="img-fluid d-block mx-auto mb-4" alt="{{ post.title }}">
-    {% endif %}
-
-    <article class="fs-5">
-      {{ post.content|safe }}
-    </article>
-
-  </div>
-</div>
-<!--comment-->
-<div class="mx-auto" style="max-width: 720px;">
-    {% if user.is_authenticated %}
-      <form method="POST" class="mb-4">
-        {% csrf_token %}
-        <div class="mb-3">
-          {{ form.content|add_class:"form-control shadow-sm" }}
-        </div>
-        <button type="submit" class="btn btn-primary">Gửi bình luận</button>
-      </form>
-    {% else %}
-      <p class="text-muted">🔒 Bạn cần <a href="{% url 'login' %}">đăng nhập</a> để bình luận.</p>
-    {% endif %}
-  </div>
-  
-
-
-  <!-- Danh sách bình luận -->
-  <main class="container py-5">
+ <main class="container py-5">
+    <!-- Nội dung bài viết -->
     <div class="mx-auto" style="max-width: 900px; margin-top: 40px;">
-      
       <h1 class="text-center fw-bold mb-3" style="color: #5e0bb6;">
         {{ post.title }}
       </h1>
-      
+  
       <p class="text-muted mb-4" style="text-align: left;">
         Ngày đăng: {{ post.publish_date|date:"d/m/Y" }}
       </p>
@@ -191,9 +150,9 @@ https://templatemo.com/tm-561-purple-buzz
       <article class="fs-5">
         {{ post.content|safe }}
       </article>
-  
     </div>
   
+    <!-- Form bình luận -->
     <div class="mx-auto mt-5" style="max-width: 720px;">
       {% if user.is_authenticated %}
         <form method="POST" class="mb-4">
@@ -208,6 +167,7 @@ https://templatemo.com/tm-561-purple-buzz
       {% endif %}
     </div>
   
+    <!-- Danh sách bình luận -->
     <div class="mx-auto" style="max-width: 720px;">
       <h5 class="mt-4">Bình luận</h5>
   
@@ -243,6 +203,7 @@ https://templatemo.com/tm-561-purple-buzz
     </div>
   </main>
   
+
     <!-- Start Footer -->
     <footer class="bg-secondary pt-4">
         <div class="container">
