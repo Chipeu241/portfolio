@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Post, Comment, Danhmuc
 from django.db.models import Count
 from datetime import datetime, timedelta
+from django.contrib.admin.views.decorators import staff_member_required
+@staff_member_required(login_url='/login/')
 def admin_dashboard(request):
     total_posts = Post.objects.count()
     total_comments = Comment.objects.count()
@@ -10,7 +12,7 @@ def admin_dashboard(request):
 
     # ✅ Tách dữ liệu trước khi render template
     titles = [item['title'] for item in post_view_data]
-    views = [item['views'] for item in post_view_data]
+    views = [int(item['views']) for item in post_view_data]
 
     context = {
         'total_posts': total_posts,
