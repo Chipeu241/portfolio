@@ -43,7 +43,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)  # 🔗 Liên kết với tài khoản
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.user.username}: {self.content[:30]}"
 #change register form

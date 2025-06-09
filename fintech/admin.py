@@ -49,10 +49,15 @@ class ReportAdmin(admin.ModelAdmin):
         return True
 
 from .models import Comment
+class ReplyInline(admin.TabularInline):
+    model = Comment
+    fk_name = 'parent'
+    extra = 1
+    verbose_name = "Phản hồi"
+    verbose_name_plural = "Các phản hồi"
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('post', 'user', 'content', 'created_at')
-    search_fields = ('content', 'user__username', 'post__title')
-    list_filter = ('created_at',)
+    inlines=[ReplyInline]
 
 admin.site.register(Comment, CommentAdmin)
