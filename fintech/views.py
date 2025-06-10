@@ -2,9 +2,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Danhmuc, Comment
 from .forms import CommentForm, CreateUserForm
-from django.db.models import Q
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+import json 
+from .forms import CreateUserForm
+from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.timezone import now, timedelta
@@ -31,6 +32,81 @@ def dh(request):
 
 def sdh(request):
     return render(request, 'fintech/sdh.html')
+# Xử lý tìm kiếm thông minh
+def search(request):
+    query = request.GET.get('q', '').strip().lower()
+
+    data = [
+        {
+            'title': 'Chung kết Startup BA 2024: Sáng tạo và Bùng nổ',
+            'content': 'cuộc thi startup sinh viên khởi nghiệp fintech ngân hàng sáng tạo',
+            'url': '/cuocthi1/'
+        },
+        {
+            'title': 'Hội chợ việc làm – Cầu nối nhân lực 2025',
+            'content': 'việc làm tuyển dụng sinh viên hội chợ ngân hàng doanh nghiệp',
+            'url': '/cuocthi2/'
+        },
+        {
+            'title': 'Tọa đàm Fintech: Nắm bắt để thành công bền vững',
+            'content': 'fintech hội thảo trực tuyến công nghệ tài chính tương lai',
+            'url': '/cuocthi3/'
+        },
+        {
+            'title': 'CHÀO MỪNG NGÀY KHOA HỌC VÀ CÔNG NGHỆ VIỆT NAM 18/5/2025',
+            'content': 'ngày khoa học công nghệ việt nam học viện ngân hàng',
+            'url': '/tintuc1/'
+        },
+        {
+            'title': 'Khóa luận tốt nghiệp học kỳ II năm học 2024-2025',
+            'content': 'nộp khóa luận tốt nghiệp khoa tài chính năm học',
+            'url': '/tintuc2/'
+        },
+        {
+            'title': 'PTIT đẩy mạnh đào tạo Fintech trong kỷ nguyên số',
+            'content': 'ptit fintech công nghệ đào tạo sinh viên chuyển đổi số',
+            'url': '/tintuc3/'
+        },
+    ]
+
+    for post in data:
+        if query in post['title'].lower() or query in post['content'].lower():
+            return redirect(post['url'])
+
+    mapping = {
+        'giảng viên': 'giangvien',
+        'giang vien': 'giangvien',
+        'tuyển sinh': 'dh',
+        'đại học': 'dh',
+        'sau đại học': 'sdh',
+        'học phí': 'hocphi',
+        'chương trình đào tạo': 'ctdt',
+        'đào tạo': 'ctdt',
+        'giới thiệu': 'about',
+        'nội bộ': 'noibo',
+        'quốc tế': 'quocte',
+        'sự kiện': 'noibo',
+        'hội thảo': 'noibo',
+        'cuộc thi': 'noibo',
+        'trang chủ': 'index',
+    }
+
+    for keyword, view_name in mapping.items():
+        if keyword in query:
+            return redirect(view_name)
+
+    return render(request, 'fintech/search.html', {'ket_qua': [], 'query': query})
+
+@csrf_exempt
+def submit(request):
+    if request.method == 'POST':
+        form = DangKyTuyenSinhForm(request.POST)
+        if form.is_valid():
+            form.save()  # ✅ Phải có dòng này để lưu dữ liệu
+            return redirect('thanhcong')
+        else:
+            return render(request, 'fintech/dky.html', {'form': form})
+    return redirect('dky')
 
 def noibo(request):
     danhmucs = Danhmuc.objects.filter(loai='noibo')
