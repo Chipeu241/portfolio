@@ -95,7 +95,7 @@ def search(request):
         'noibo_results': noibo_results,
         'quocte_results': quocte_results,
     }
-    return render(request, 'search.html', context)
+    return render(request, 'fintech/search.html', context)
 
 @csrf_exempt
 def submit(request):
