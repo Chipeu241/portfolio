@@ -116,35 +116,40 @@ https://templatemo.com/tm-561-purple-buzz
 
 
   {% block content %}
-  <div class="container mt-5">
-      <h3>Kết quả tìm kiếm cho: "{{ query }}"</h3>
-  
-      {% if not noibo_results and not quocte_results %}
-          <p>Không tìm thấy bài viết phù hợp.</p>
-      {% endif %}
-  
-      {% if noibo_results %}
-          <h4 class="mt-4 text-primary">Tin tức Nội bộ</h4>
-          <ul class="list-group mb-4">
-              {% for post in noibo_results %}
-                  <li class="list-group-item">
-                    <a href="#">{{ post.title }}</a>
-                    <p>{{ post.content|truncatechars:150 }}</p>                   
-                  </li>
-              {% endfor %}
-          </ul>
-      {% endif %}
-  
-      {% if quocte_results %}
-          <h4 class="mt-4 text-success">Tin tức Quốc tế</h4>
-          <ul class="list-group">
-              {% for post in quocte_results %}
-                  <li class="list-group-item">
-                      <a href="#">{{ post.tieu_de }}</a>
-                      <p>{{ post.noi_dung|truncatechars:150 }}</p>
-                  </li>
-              {% endfor %}
-          </ul>
-      {% endif %}
-  </div>
-  {% endblock %}
+<div class="container py-5">
+  <h2 class="text-center mb-4">Kết quả tìm kiếm cho từ khóa: "{{ query }}"</h2>
+
+  {% if noibo_results or quocte_results %}
+    {% if noibo_results %}
+      <h4 class="mt-4 text-primary">Bài viết nội bộ</h4>
+      <ul class="list-group mb-4">
+        {% for post in noibo_results %}
+          <li class="list-group-item">
+            {% if post.danhmuc.loai == 'noibo' %}
+              <a href="{% url 'detail' post.ordering %}" class="fw-bold">{{ post.title }}</a>
+            {% endif %}
+            <p class="mb-1">{{ post.content|truncatechars:150|safe }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if quocte_results %}
+      <h4 class="mt-4 text-success">Bài viết quốc tế</h4>
+      <ul class="list-group">
+        {% for post in quocte_results %}
+          <li class="list-group-item">
+            {% if post.danhmuc.loai == 'quocte' %}
+              <a href="{% url 'detail_quocte' post.ordering %}" class="fw-bold">{{ post.title }}</a>
+            {% endif %}
+            <p class="mb-1">{{ post.content|truncatechars:150|safe }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  {% else %}
+    <p class="text-muted">Không tìm thấy kết quả phù hợp.</p>
+  {% endif %}
+</div>
+{% endblock %}
