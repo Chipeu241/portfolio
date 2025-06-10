@@ -79,12 +79,12 @@ def search(request):
 
     if query:
         noibo_results = Post.objects.filter(
-            Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
+            Q(title__icontains=query) | Q(content__icontains=query),
             loai='Nội bộ'
         )
 
         quocte_results = Post.objects.filter(
-            Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
+            Q(title__icontains=query) | Q(content__icontains=query),
             loai='Quốc tế'
         )
 
