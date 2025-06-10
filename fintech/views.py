@@ -73,16 +73,27 @@ def detail(request, ordering):
     return render(request, 'fintech/detail.html', {'post': post, 'comments': comments, 'form': form})
 
 def search(request):
-    query = request.GET.get('q', '').strip()
-    ket_qua = []
+    query = request.GET.get('q', '')
+    noibo_results = []
+    quocte_results = []
 
     if query:
-        ket_qua = Post.objects.filter(
-            Q(status='published') &
-            (Q(title__icontains=query) | Q(content__icontains=query))
-        ).distinct()
+        noibo_results = BaiViet.objects.filter(
+            Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
+            loai='Nội bộ'
+        )
 
-    return render(request, 'fintech/search.html', {'ket_qua': ket_qua, 'query': query})
+        quocte_results = BaiViet.objects.filter(
+            Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
+            loai='Quốc tế'
+        )
+
+    context = {
+        'query': query,
+        'noibo_results': noibo_results,
+        'quocte_results': quocte_results,
+    }
+    return render(request, 'search.html', context)
 
 @csrf_exempt
 def submit(request):

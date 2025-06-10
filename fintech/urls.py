@@ -12,6 +12,7 @@ urlpatterns = [
     path('noibo/', views.noibo, name='noibo'),
     path('quocte/', views.quocte, name='quocte'),
     path('noibo/<int:ordering>', views.detail, name='detail'),
+    path('quocte/<int:ordering>', views.detail, name='detail'),
     path('search/', views.search, name='search'),
     path('submit/', views.submit, name='submit'),  # Xử lý form
     path('register/', views.register, name='register'), 

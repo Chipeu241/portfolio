@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -114,19 +115,36 @@ https://templatemo.com/tm-561-purple-buzz
   <!-- Close Header -->
 
 
-  <h4>Kết quả cho: "{{ query }}"</h4>
-
-  {% if ket_qua %}
-    <ul class="list-group">
-      {% for bai in ket_qua %}
-        <li class="list-group-item">
-          <a href="{% url 'detail' bai.ordering %}">{{ bai.title }}</a>
-          <p>{{ bai.content|truncatechars:150 }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <div class="alert alert-warning mt-3">
-      Không tìm thấy kết quả phù hợp với từ khóa: <strong>{{ query }}</strong>
-    </div>
-  {% endif %}
+  {% block content %}
+  <div class="container mt-5">
+      <h3>Kết quả tìm kiếm cho: "{{ query }}"</h3>
+  
+      {% if not noibo_results and not quocte_results %}
+          <p>Không tìm thấy bài viết phù hợp.</p>
+      {% endif %}
+  
+      {% if noibo_results %}
+          <h4 class="mt-4 text-primary">Tin tức Nội bộ</h4>
+          <ul class="list-group mb-4">
+              {% for post in noibo_results %}
+                  <li class="list-group-item">
+                      <a href="#">{{ post.tieu_de }}</a>
+                      <p>{{ post.noi_dung|truncatechars:150 }}</p>
+                  </li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+  
+      {% if quocte_results %}
+          <h4 class="mt-4 text-success">Tin tức Quốc tế</h4>
+          <ul class="list-group">
+              {% for post in quocte_results %}
+                  <li class="list-group-item">
+                      <a href="#">{{ post.tieu_de }}</a>
+                      <p>{{ post.noi_dung|truncatechars:150 }}</p>
+                  </li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+  </div>
+  {% endblock %}
