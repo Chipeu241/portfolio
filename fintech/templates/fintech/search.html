@@ -114,17 +114,20 @@ https://templatemo.com/tm-561-purple-buzz
   <!-- Close Header -->
 
 
-<div class="container mt-4">
-    <h5>
-        <a href="javascript:history.back()">Quay lại trang trước</a> / Kết quả tìm kiếm
-    </h5>
+<h4>Kết quả cho: "{{ query }}"</h4>
 
-    <form action="{% url 'search' %}" method="get" class="form-inline mb-3">
-        <input type="text" name="q" class="form-control mr-2" value="{{ query }}" placeholder="Tìm kiếm..." />
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-    </form>
+{% if ket_qua %}
+  <ul class="list-group">
+    {% for bai in ket_qua %}
+      <li class="list-group-item">
+        <a href="{% url 'detail' bai.ordering %}">{{ bai.title }}</a>
+        <p>{{ bai.content|truncatechars:150 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <div class="alert alert-warning mt-3">
+    Không tìm thấy kết quả phù hợp với từ khóa: <strong>{{ query }}</strong>
+  </div>
+{% endif %}
 
-    <div class="alert alert-warning">
-        Tìm thấy <strong>0</strong> cho từ khóa: <strong>{{ query }}</strong>
-    </div>
-</div>
