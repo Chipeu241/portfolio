@@ -73,19 +73,21 @@ def detail(request, ordering):
     return render(request, 'fintech/detail.html', {'post': post, 'comments': comments, 'form': form})
 
 def search(request):
-    query = request.GET.get('q', '')
+    query = request.GET.get('q', '').strip()
     noibo_results = []
     quocte_results = []
 
     if query:
         noibo_results = Post.objects.filter(
             Q(title__icontains=query) | Q(content__icontains=query),
-            loai='Nội bộ'
+            danhmuc__loai='noibo',
+            status='published'
         )
 
         quocte_results = Post.objects.filter(
             Q(title__icontains=query) | Q(content__icontains=query),
-            loai='Quốc tế'
+            danhmuc__loai='quocte',
+            status='published'
         )
 
     context = {

@@ -128,8 +128,8 @@ https://templatemo.com/tm-561-purple-buzz
           <ul class="list-group mb-4">
               {% for post in noibo_results %}
                   <li class="list-group-item">
-                      <a href="#">{{ post.tieu_de }}</a>
-                      <p>{{ post.noi_dung|truncatechars:150 }}</p>
+                    <a href="#">{{ post.title }}</a>
+                    <p>{{ post.content|truncatechars:150 }}</p>                   
                   </li>
               {% endfor %}
           </ul>
