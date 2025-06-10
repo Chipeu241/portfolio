@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="{% static 'fintech/assets/img/Logo_FT_tròn.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}">
     <!-- Load Require CSS -->
     <link href="{% static 'fintech/assets/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Font CSS -->
@@ -142,7 +142,7 @@
     <nav id="main_nav" class="navbar navbar-expand-lg navbar-light bg-white shadow">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand h1" href="{% url 'index' %}">
-                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg' %}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
+                <img src="{% static 'fintech/assets/img/Logo_FT_ko.jpg'%}" alt="Logo Fintech BAV" class="logo-img" style="height: 37px;">
                 <span class="text-dark h4">Fintech</span> <span class="text-primary h4">BAV</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -180,7 +180,7 @@
                             <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown" href="{% url 'ctdt' %}" id="daotaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Đào tạo</a>
                             <ul class="dropdown-menu" aria-labelledby="daotaoDropdown">
                                 <li><a class="dropdown-item" href="{% url 'ctdt' %}">Chương trình đào tạo</a></li>
-                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>
+                                <li><a class="dropdown-item" href="{% url 'hocphi' %}">Mức thu học phí</a></li>                                
                         </li>
                     </ul>
                 </div>
@@ -222,7 +222,7 @@
         });
       </script>      
     <!-- Close Header -->
-
+     
 <div class="background-section text-center py-5">
   <h1 class="pricing-header h2 semi-bold-600">Chương trình đào tạo</h1>
   <p class="pricing-footer fs-2">ngành Công nghệ Tài chính</p>
