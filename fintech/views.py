@@ -1,11 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Danhmuc, Comment
-from .forms import CommentForm, CreateUserForm
-import json 
-from .forms import CreateUserForm
-from django.contrib.auth.forms import UserCreationForm 
-from django.contrib.auth import authenticate, login, logout 
+from .models import Post, Danhmuc, Comment, taiKhoan
+from .forms import CommentForm, CreateUserForm, DangKyTuyenSinhForm
+from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.timezone import now, timedelta
@@ -32,16 +31,6 @@ def dh(request):
 
 def sdh(request):
     return render(request, 'fintech/sdh.html')
-@csrf_exempt
-def submit(request):
-    if request.method == 'POST':
-        form = DangKyTuyenSinhForm(request.POST)
-        if form.is_valid():
-            form.save()  # ✅ Phải có dòng này để lưu dữ liệu
-            return redirect('thanhcong')
-        else:
-            return render(request, 'fintech/dky.html', {'form': form})
-    return redirect('dky')
 
 def noibo(request):
     danhmucs = Danhmuc.objects.filter(loai='noibo')
