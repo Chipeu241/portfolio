@@ -78,12 +78,12 @@ def search(request):
     quocte_results = []
 
     if query:
-        noibo_results = BaiViet.objects.filter(
+        noibo_results = Post.objects.filter(
             Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
             loai='Nội bộ'
         )
 
-        quocte_results = BaiViet.objects.filter(
+        quocte_results = Post.objects.filter(
             Q(tieu_de__icontains=query) | Q(noi_dung__icontains=query),
             loai='Quốc tế'
         )
