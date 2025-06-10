@@ -4,6 +4,7 @@ from .models import Post, Danhmuc, Comment
 from .forms import CommentForm, CreateUserForm
 import json 
 from .forms import CreateUserForm
+from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
